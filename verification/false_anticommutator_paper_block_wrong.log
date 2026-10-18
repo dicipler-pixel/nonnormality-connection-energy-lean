@@ -1,0 +1,17 @@
+lake env lean FalseControls/anticommutator_paper_block_wrong.lean
+FalseControls/anticommutator_paper_block_wrong.lean:5:86: error: unsolved goals
+case «0».«0»
+a b d : ℚ
+⊢ b = 0
+
+case «0».«1»
+a b d : ℚ
+⊢ a + d = d - a
+
+case «1».«0»
+a b d : ℚ
+⊢ -d + -a = d - a
+
+case «1».«1»
+a b d : ℚ
+⊢ b = 0

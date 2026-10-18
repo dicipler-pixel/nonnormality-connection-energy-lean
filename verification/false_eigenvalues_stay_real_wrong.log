@@ -1,0 +1,4 @@
+lake env lean FalseControls/eigenvalues_stay_real_wrong.lean
+FalseControls/eigenvalues_stay_real_wrong.lean:5:73: error: unsolved goals
+case refine_2
+⊢ vecHead ∘ ![![0, 1], ![-1, 0]] = 0

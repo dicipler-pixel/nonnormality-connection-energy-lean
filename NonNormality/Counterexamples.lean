@@ -75,7 +75,11 @@ theorem not_real_eigenvector_smul_add_symplecticJ {c ε μ : ℝ} (hε : ε ≠ 
   intro h
   have h0 := congr_fun h 0
   have h1 := congr_fun h 1
-  simp [symplecticJ, mulVec, dotProduct, Fin.sum_univ_two] at h0 h1
+  simp only [mulVec, dotProduct, symplecticJ, smul_of, smul_cons, smul_eq_mul, mul_zero, mul_one,
+    smul_empty, mul_neg, Fin.isValue, Matrix.add_apply, Matrix.smul_apply, of_apply, cons_val',
+    cons_val_fin_one, cons_val_zero, Fin.sum_univ_two, one_apply_eq, add_zero, ne_eq, zero_ne_one,
+    not_false_eq_true, one_apply_ne, cons_val_one, zero_add, Pi.smul_apply, one_ne_zero,
+    neg_mul] at h0 h1
   have hsq : ε * (v 0 ^ 2 + v 1 ^ 2) = 0 := by linear_combination v 1 * h0 - v 0 * h1
   have hz : v 0 ^ 2 + v 1 ^ 2 = 0 := (mul_eq_zero.1 hsq).resolve_left hε
   apply hv

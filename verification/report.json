@@ -3,19 +3,113 @@
   "mathlib": "d13f23b723b8a846827a245b89c10fc7d3f11612",
   "build": "passed, no warnings",
   "kernel_replay": [
-    "NonNormality",
+    "NonNormality.Counterexamples",
+    "NonNormality.Evenness",
     "NonNormality.Flatten",
     "NonNormality.Frobenius",
     "NonNormality.Holonomy",
-    "NonNormality.SelfCommutator"
+    "NonNormality.Kernel",
+    "NonNormality.Lattice",
+    "NonNormality.Localization",
+    "NonNormality.QGT",
+    "NonNormality.SelfCommutator",
+    "NonNormality.SymSkew"
   ],
-  "declarations_audited": 49,
+  "declarations_audited": 127,
   "declaration_kinds": {
-    "theorem": 41,
-    "def": 7,
+    "def": 18,
+    "theorem": 108,
     "structure": 1
   },
   "axioms": {
+    "NonNormality.paperBlock": [
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.paperBlock_eq_symplecticJ_mul_sub": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.paperBlock_ne_anticommutator": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.trace_gl_conj_ne": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.qgt_ne_metric_add_I_mul_curvature": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.not_real_eigenvector_smul_add_symplecticJ": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.not_diagonalizable_jordan": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.rigidity_lt_of_zero_gradient": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.transpose_add_smul_of_symm_skew": [
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.det_add_smul_neg": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.trace_inv_sub_add_smul_neg": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.trace_mul_eq_zero_of_symm_skew": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.deriv_zero_of_even": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.deriv_det_add_smul_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.deriv_log_det_add_smul_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.deriv_trace_inv_sub_add_smul_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.det_diag_add_smul_skew_two": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.log_det_diag_add_smul_skew_two_gt": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
     "NonNormality.comp_conjTranspose": [
       "Quot.sound",
       "propext"
@@ -175,6 +269,265 @@
       "Quot.sound",
       "propext"
     ],
+    "NonNormality.isStarNormal_diagonal_add_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.isStarNormal_diagonal_add_scalar_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.mul_vecMulVec_sub_vecMulVec_mul": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.finrank_parallelSections_eq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.symplecticJ": [
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.symplecticJ_transpose": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.symplecticJ_mul_self": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.mul_symplecticJ_add": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.transpose_mul_symplecticJ": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.transpose_mul_symplecticJ_of_trace_eq_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.mul_symplecticJ_add_of_trace_eq_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.transpose_mul_symplecticJ_sub": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.kronecker_transpose_of_skew": [
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.centralDiff": [
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.centralDiff_transpose": [
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.latticeTransport": [
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.latticeTransport_transpose": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.rot": [
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.rot_transpose_mul_self": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.rot_mul_symplecticJ_mul_transpose": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.reflect_mul_symplecticJ_mul_transpose": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.kronecker_one_rot_conj_latticeTransport": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.kronecker_one_rot_transpose_mul_self": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.participationIndex": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.one_le_card_mul_sum_sq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.sum_sq_le_one": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.inv_card_le_participationIndex": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.participationIndex_le_one": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.localizationIndex": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.localizationIndex_eq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.inv_card_le_localizationIndex": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.localizationIndex_le_one": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.qgt": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.qgtMetric": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.qgtCurvature": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.qgt_swap": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.neg_I_mul_trace_commutator": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.qgtCurvature_eq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.qgt_eq_metric_add_curvature": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.qgt_eq_trace_conjTranspose_mul": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.norm_sq_trace_conjTranspose_mul_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.re_trace_conjTranspose_mul_self_nonneg": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.qgtMetric_self_nonneg": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.norm_sq_qgt_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.abs_qgtCurvature_le": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.IsTangent": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.IsTangent.mul_mul_self": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.IsTangent.one_sub_mul_mul_one_sub": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.trace_one_sub_mul_mul_of_isTangent": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.qgt_one_sub_of_isTangent": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.qgtMetric_one_sub_of_isTangent": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.qgtCurvature_one_sub_of_isTangent": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.qgtMetric_self_of_isTangent": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
     "NonNormality.selfCommutator_diagonal_add": [
       "Classical.choice",
       "Quot.sound",
@@ -259,13 +612,53 @@
       "Classical.choice",
       "Quot.sound",
       "propext"
+    ],
+    "NonNormality.selfCommutator_add_smul": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.selfCommutator_add_smul_of_skew": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.selfCommutator_add": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.isStarNormal_add_iff_commute": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.isStarNormal_add_smul_iff_commute": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.isStarNormal_iff_commute_add_sub": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.norm_selfCommutator_add_smul_of_skew": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
     ]
   },
   "false_controls": {
+    "anticommutator_paper_block_wrong.lean": "rejected",
+    "eigenvalues_stay_real_wrong.lean": "rejected",
     "energy_constant_wrong.lean": "rejected",
+    "gl2_gauge_wrong.lean": "rejected",
     "holonomy_reverse_no_sign_wrong.lean": "rejected",
+    "log_det_negative_correction_wrong.lean": "rejected",
     "non_hermitian_not_normal_wrong.lean": "rejected",
     "parallel_means_equal_wrong.lean": "rejected",
+    "qgt_g_plus_i_omega_wrong.lean": "rejected",
     "scalar_unweighted_wrong.lean": "rejected"
   },
   "checks": [
@@ -275,16 +668,28 @@
   "declaration_lint": "passed",
   "lint_style": "passed",
   "sha256": {
+    "NonNormality/Counterexamples.lean": "68b3f48e7b84ea40dbe1c80a10a64db21f734535e8164002a8e3953e65ad07d3",
+    "NonNormality/Evenness.lean": "3e5dd2eb2220b0ccef83f8127df1c8cab9f900e9c1178ecd0304d2ebb565c220",
     "NonNormality/Flatten.lean": "fc70f9fe960c788fe13b94d0107fac440ba3c179c167be0299a5da1ac29a3b3a",
     "NonNormality/Frobenius.lean": "38ad194ea145e34fbdf08546d153d99f69626b2bfbb9121717caee60f428e256",
     "NonNormality/Holonomy.lean": "944ce9750baf1509eeab68857597dec353e5a31981bef7d23cec52ea1c2dbe50",
+    "NonNormality/Kernel.lean": "2018a9d420a779b38c2eb32969eb573fb2032be0ff81a184bedad628bccd2a74",
+    "NonNormality/Lattice.lean": "cd9fd0a372e251af12b3fd8259fc3be728867ad601918f1fa551548989e343ab",
+    "NonNormality/Localization.lean": "58284217974b44d01564901d7fb91f61e350002d7380e4f8d88df0c772563f56",
+    "NonNormality/QGT.lean": "b759be53e74214ff66065c82c42f6833401874bebda067a71ee1e24803c5a427",
     "NonNormality/SelfCommutator.lean": "5b11e78d2079dfddd055863372689eeb9fc84c7b2d603391fcb457cbf08f4701",
-    "NonNormality.lean": "b81c84a5ef546b06655c5d985121e11dfce21c5f31b4686a91bf29f4538dc2ba",
+    "NonNormality/SymSkew.lean": "907dd236a0604e7143792167f1569d5a80f75b9397e9f7b81ddb1c82d68235d6",
+    "NonNormality.lean": "766925c24748cbc1dacf380f87ba514d34bceae0e9f58e2f6101dc541135f683",
     "checks/Necessity.lean": "458e3963b1a660bdceb4e58aecbb41aae3fec039d6dbf10cfc52a5b6fb8c4414",
+    "FalseControls/anticommutator_paper_block_wrong.lean": "03eab6a4230d316474718fc7e2dd0efdf6bab5ac6c96dffd0579bdb223bc4d99",
+    "FalseControls/eigenvalues_stay_real_wrong.lean": "48861464d3d00c3c27434290e58d390efdaf5732260480aeeb32c2aa687057d3",
     "FalseControls/energy_constant_wrong.lean": "462445bd7f323c3cb64bc055e84d6811318bda2d972c2d20c8b43b4bf578d59d",
+    "FalseControls/gl2_gauge_wrong.lean": "fe5c691e24d4680a636f25f9569a965cba861d88a399a7e1fee594635b6a449b",
     "FalseControls/holonomy_reverse_no_sign_wrong.lean": "7939d71cc9af9a56cb255e86154b858f9cf1a3ca9aad4264f88dcea97481ea4a",
+    "FalseControls/log_det_negative_correction_wrong.lean": "6a5b146e2c43ab0a15e593832fefca433773adb4a08579fa99095f182be4f3cf",
     "FalseControls/non_hermitian_not_normal_wrong.lean": "bfae91ec9cbee0d572ebaae968b9768232aec91d270e3c825aa716acf234b10e",
     "FalseControls/parallel_means_equal_wrong.lean": "4282c9713585687df183b94300a83ca86c302f3aab8553ffd6491e9a07518e86",
+    "FalseControls/qgt_g_plus_i_omega_wrong.lean": "9dde9230892637698f2a38ce57f827910199f026fa52ba7c51791578a6af7140",
     "FalseControls/scalar_unweighted_wrong.lean": "8fe0f5fd470426733e4e22d7349c206cc6f62ec1029c28d438cf947159889a34"
   }
 }

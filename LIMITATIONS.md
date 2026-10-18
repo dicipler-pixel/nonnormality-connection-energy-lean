@@ -38,3 +38,12 @@
 * Checked on this box only: `lake build`, `leanchecker` kernel replay, axiom audit, `#lint`,
   Mathlib standard linter set, `lake exe lint-style`. Nothing has been checked by a Mathlib
   reviewer. Nothing has been pushed anywhere.
+
+## findings-v2
+
+* `finrank_parallelSections_eq` now gives `dim ker E_A = dim Fix` (a transfer of dimension
+  through the linear equivalence). It is not an explicit count of the commutant.
+* Not formalized: the items tagged FORMALIZABLE NOW or NEEDS MISSING MATHLIB in
+  `FINDINGS_INVENTORY.md` §8. Examples are the Fiedler bound, the DFT spectrum of the lattice
+  operator, Riesz/Dunford projectors, pseudospectra, Kreiss, and the Filament theorems. These
+  are only checked numerically, in `numerics/check_findings.py`.

@@ -34,10 +34,12 @@ namespace NonNormality
 
 variable {ι m : Type*} [Fintype ι] [DecidableEq ι] [Fintype m] [DecidableEq m]
 
+omit [DecidableEq m] in
 /-- **Kernel corollary without unitarity.** -/
 theorem isStarNormal_diagonal_add_iff (D : ι → Matrix m m ℂ) (hD : ∀ i, (D i).IsHermitian)
     (A : Matrix ι ι (Matrix m m ℂ)) (hA : Aᴴ = -A) :
     IsStarNormal (diagonal D + A) ↔ ∀ i j, D i * A i j = A i j * D j := by
+  classical
   rw [isStarNormal_iff, Commute, SemiconjBy, star_eq_conjTranspose, eq_comm, ← sub_eq_zero,
     ← norm_eq_zero, ← pow_eq_zero_iff two_ne_zero, norm_sq_selfCommutator_eq D hD A hA,
     mul_eq_zero, or_iff_right four_ne_zero,

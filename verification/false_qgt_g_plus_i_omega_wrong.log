@@ -1,0 +1,11 @@
+lake env lean FalseControls/qgt_g_plus_i_omega_wrong.lean
+FalseControls/qgt_g_plus_i_omega_wrong.lean:6:60: error: unsolved goals
+case a
+n : Type u_1
+inst✝ : Fintype n
+P V W : Matrix n n ℂ
+hP : P.IsHermitian
+hPP : P * P = P
+hV : V.IsHermitian
+hW : W.IsHermitian
+⊢ (qgt P V W).im = 2 * (qgt P V W).im

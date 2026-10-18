@@ -1,0 +1,8 @@
+lake env lean FalseControls/log_det_negative_correction_wrong.lean
+FalseControls/log_det_negative_correction_wrong.lean:8:2: error: linarith failed to find a contradiction
+a b k ε : ℝ
+ha : 0 < a
+hb : 0 < b
+a✝ : a * b < a * b + ε ^ 2 * k ^ 2
+⊢ False
+failed

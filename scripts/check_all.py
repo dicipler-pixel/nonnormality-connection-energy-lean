@@ -68,7 +68,14 @@ def main():
     _, build = run("build", ["lake", "build"])
     if re.search(r"warning|error", build.split("\n", 1)[1]):
         raise SystemExit("build reported warnings or errors")
-    mods = ["NonNormality"] + [f"NonNormality.{p.stem}" for p in LIB if p.parent.name == "NonNormality"]
+    mods = [f"NonNormality.{p.stem}" for p in LIB if p.parent.name == "NonNormality"]
+    # The root `NonNormality.lean` only imports the modules and declares nothing, so replaying
+    # each module covers every declaration. Replaying the root was OOM-killed on this box
+    # (more than 14 GB) once findings-v2 added analysis imports.
+    root_decls = re.findall(r"^(?:theorem|lemma|def|noncomputable def|structure|instance)\b",
+                            strip_comments((ROOT / "NonNormality.lean").read_text()), re.M)
+    if root_decls:
+        mods = ["NonNormality"] + mods
     for mod in mods:
         run(f"kernel_{mod}", ["lake", "env", "leanchecker", mod])
     files = LIB + sorted((ROOT / "checks").glob("*.lean")) + sorted((ROOT / "FalseControls").glob("*.lean"))

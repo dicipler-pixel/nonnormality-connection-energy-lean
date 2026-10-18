@@ -1,5 +1,5 @@
 lake env lean verification/DeclarationLint.lean
--- Found 0 errors in 56 declarations (plus 33 automatically generated ones) in NonNormality with 15 linters
+-- Found 0 errors in 136 declarations (plus 56 automatically generated ones) in NonNormality with 15 linters
 
 
 -- All linting checks passed!

@@ -12,3 +12,7 @@
   reused from Jeromie Beasley's own `ramanujan-challenge-lean` repository.
 * There was no earlier formalization of this paper. `NS_Nonnormal_Resolvent_Audit.lean`
   (10 Sept) is unrelated (Navier–Stokes) and was not used.
+* Branch `findings-v2` (18 Oct 2026): extra modules formalize findings from the earlier papers
+  behind 22804072 (the June 2026 lattice / pseudospectral / transport-geometry papers, the
+  dirichlet note, v1–v6 and Filament Rev. 4, Zenodo 22959175). Copies are in `originals/`;
+  see `FINDINGS_INVENTORY.md`. All Lean code is new.

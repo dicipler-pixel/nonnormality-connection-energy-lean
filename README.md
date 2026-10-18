@@ -55,8 +55,18 @@ theorem norm_sq_selfCommutator_scalar (d : ι → ℝ) (a : Matrix ι ι ℂ) (h
 | `NonNormality/SelfCommutator.lean` | identities (1), (2), general and scalar forms, edge-sum lemma |
 | `NonNormality/Holonomy.lean` | walk holonomy, transport, identity (3) |
 | `NonNormality/Flatten.lean` | `Matrix.comp` commutes with `ᴴ`, preserves the Frobenius norm; (1), (2) for the flattened matrix |
+| `NonNormality/SymSkew.lean` | (findings-v2) symmetric + skew: `[S+εK,(S+εK)*] = 2ε[K,S]`, normal ⇔ commute |
+| `NonNormality/Lattice.lean` | (findings-v2) `J`, `MJ+JM = tr M • J`, symmetric lattice transport `Δ₁ ⊗ J`, SO(2) gauge |
+| `NonNormality/Kernel.lean` | (findings-v2) non-unitary normality criterion (v1), rank-one channel, kernel dimension |
+| `NonNormality/Evenness.lean` | (findings-v2) ε ↦ −ε evenness, first-order cancellation, positive second-order 2×2 model |
+| `NonNormality/QGT.lean` | (findings-v2) quantum geometric tensor, `Q = g + (i/2)Ω`, metric–curvature inequality, tangent vectors |
+| `NonNormality/Localization.lean` | (findings-v2) participation / localization index bounds |
+| `NonNormality/Counterexamples.lean` | (findings-v2) Lean counterexamples to statements in the earlier papers |
+| `FINDINGS_INVENTORY.md` | (findings-v2) every finding from the original papers, tagged, with source and page |
+| `numerics/check_findings.py` | (findings-v2) numpy checks of the findings (output `check_findings_output.txt`) |
+| `originals/` | (findings-v2) copies of the source PDFs and figures |
 | `checks/Necessity.lean` | proves Hermitian `D` is necessary (normal but non-parallel example) |
-| `FalseControls/` | 5 false statements that must fail to compile |
+| `FalseControls/` | 10 false statements that must fail to compile |
 | `scripts/check_all.py` | runs every check, writes `verification/report.json` |
 | `STATEMENTS.md` | every statement of the paper, classified, with remarks |
 | `MATHLIB_FIT.md` | what could go to Mathlib, names, placement, verdict |
