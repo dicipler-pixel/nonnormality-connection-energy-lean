@@ -1,0 +1,19 @@
+lake env lean FalseControls/energy_constant_wrong.lean
+FalseControls/energy_constant_wrong.lean:11:2: error: linarith failed to find a contradiction
+case h1
+ι : Type u_1
+m : Type u_2
+inst✝⁴ : Fintype ι
+inst✝³ : DecidableEq ι
+inst✝² : Fintype m
+inst✝¹ : DecidableEq m
+G : SimpleGraph ι
+inst✝ : DecidableRel G.Adj
+A : Matrix ι ι (Matrix m m ℂ)
+hA : IsUnitaryConnection G A
+D : ι → Matrix m m ℂ
+hD : ∀ (i : ι), (D i).IsHermitian
+h : ‖(diagonal D + A) * (diagonal D + A)ᴴ - (diagonal D + A)ᴴ * (diagonal D + A)‖ ^ 2 / 8 = connectionEnergy G A D
+a✝ : ‖(diagonal D + A) * (diagonal D + A)ᴴ - (diagonal D + A)ᴴ * (diagonal D + A)‖ ^ 2 / 4 < connectionEnergy G A D
+⊢ False
+failed

@@ -1,0 +1,6 @@
+identity (1) worst rel. error over 300 random graphs: 5.628724939889675e-16
+non-Hermitian D: lhs/8 = 95.91684756097686  rhs = 89.03283371684071 (should differ)
+scaled-unitary edges: lhs/8= 413.21162834263873  paper rhs(using A^{-1})= 103.30290708565968  sum||D_iA-AD_j||^2= 413.21162834263873
+scalar weighted Dirichlet: lhs/8= 28.822547925529033  sum|a|^2|di-dj|^2= 28.822547925529033
+holonomy-fixed X gives normal H: ||[H,H*]||_F = 1.7680961069343705e-15  [X,W] = 6.566793369754027e-16
+generic Y (not fixed): ||[H,H*]||_F = 4.779972095816918  ||[Y,W]|| = 1.6899753414173089

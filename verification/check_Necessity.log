@@ -1,0 +1,1 @@
+lake env lean -DwarningAsError=true checks/Necessity.lean

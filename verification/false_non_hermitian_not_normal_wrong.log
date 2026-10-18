@@ -1,0 +1,5 @@
+lake env lean FalseControls/non_hermitian_not_normal_wrong.lean
+FalseControls/non_hermitian_not_normal_wrong.lean:4:45: error: unsolved goals
+h : star !![I, 1; -1, -I] * !![I, 1; -1, -I] = !![I, 1; -1, -I] * star !![I, 1; -1, -I]
+h00 : True
+⊢ False

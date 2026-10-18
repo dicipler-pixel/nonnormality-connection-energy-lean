@@ -1,0 +1,2 @@
+lake exe lint-style NonNormality
+warning: nolints file could not be read; treating as empty: scripts/nolints-style.txt

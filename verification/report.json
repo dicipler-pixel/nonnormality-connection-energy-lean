@@ -1,0 +1,290 @@
+{
+  "lean": "Lean (version 4.34.1, x86_64-unknown-linux-gnu, commit 5045d0056413266e57c625dcd7c365b10e377c52, Release)",
+  "mathlib": "d13f23b723b8a846827a245b89c10fc7d3f11612",
+  "build": "passed, no warnings",
+  "kernel_replay": [
+    "NonNormality",
+    "NonNormality.Flatten",
+    "NonNormality.Frobenius",
+    "NonNormality.Holonomy",
+    "NonNormality.SelfCommutator"
+  ],
+  "declarations_audited": 49,
+  "declaration_kinds": {
+    "theorem": 41,
+    "def": 7,
+    "structure": 1
+  },
+  "axioms": {
+    "NonNormality.comp_conjTranspose": [
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.frobenius_norm_comp": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.comp_selfCommutator": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.norm_sq_selfCommutator_comp_div_eight": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.isStarNormal_comp_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.isStarNormal_comp_iff_isParallel": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.frobenius_norm_sq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.frobenius_norm_sq_eq_re_trace": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.frobenius_norm_unitary_mul": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.frobenius_norm_mul_unitary": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.holonomy": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.holonomy_nil": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.holonomy_cons": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.holonomy_append": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.holonomy_concat": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.IsUnitaryConnection.holonomy_mem_unitaryGroup": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.IsUnitaryConnection.holonomy_reverse": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.conj_eq_self_iff_commute": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.IsParallel.eq_conj_holonomy": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.holonomyFixed": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.parallelSections": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.mem_parallelSections_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.mem_parallelSections_iff_connectionEnergy_eq_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.mem_holonomyFixed_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.IsUnitaryConnection.mem_holonomyFixed_iff_commute": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.IsUnitaryConnection.conj_holonomy_eq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.evalParallel": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.evalParallel_apply_coe": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.evalParallel_injective": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.IsUnitaryConnection.evalParallel_surjective": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.parallelSectionsEquivHolonomyFixed": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.parallelSectionsEquivHolonomyFixed_apply_coe": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.selfCommutator_diagonal_add": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.diagonal_mul_sub_mul_diagonal_apply": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.norm_sq_selfCommutator_eq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.IsUnitaryConnection": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.IsParallel": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.connectionEnergy": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.IsUnitaryConnection.apply_eq_neg_conjTranspose": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.norm_mul_sub_mul_eq_of_mem_unitaryGroup": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.norm_sq_selfCommutator_div_eight": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.connectionEnergy_eq_zero_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.connectionEnergy_nonneg": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.isStarNormal_iff_isParallel": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.IsUnitaryConnection.norm_mul_sub_mul_comm": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.IsUnitaryConnection.norm_sub_conj_comm": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.sum_sum_ite_adj_eq_two_mul_sum_edgeFinset": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.norm_sq_selfCommutator_div_eight_eq_sum_edgeFinset": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "NonNormality.norm_sq_selfCommutator_scalar": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "false_controls": {
+    "energy_constant_wrong.lean": "rejected",
+    "holonomy_reverse_no_sign_wrong.lean": "rejected",
+    "non_hermitian_not_normal_wrong.lean": "rejected",
+    "parallel_means_equal_wrong.lean": "rejected",
+    "scalar_unweighted_wrong.lean": "rejected"
+  },
+  "checks": [
+    "Necessity.lean"
+  ],
+  "standard_lint": "passed",
+  "declaration_lint": "passed",
+  "lint_style": "passed",
+  "sha256": {
+    "NonNormality/Flatten.lean": "fc70f9fe960c788fe13b94d0107fac440ba3c179c167be0299a5da1ac29a3b3a",
+    "NonNormality/Frobenius.lean": "38ad194ea145e34fbdf08546d153d99f69626b2bfbb9121717caee60f428e256",
+    "NonNormality/Holonomy.lean": "944ce9750baf1509eeab68857597dec353e5a31981bef7d23cec52ea1c2dbe50",
+    "NonNormality/SelfCommutator.lean": "5b11e78d2079dfddd055863372689eeb9fc84c7b2d603391fcb457cbf08f4701",
+    "NonNormality.lean": "b81c84a5ef546b06655c5d985121e11dfce21c5f31b4686a91bf29f4538dc2ba",
+    "checks/Necessity.lean": "458e3963b1a660bdceb4e58aecbb41aae3fec039d6dbf10cfc52a5b6fb8c4414",
+    "FalseControls/energy_constant_wrong.lean": "462445bd7f323c3cb64bc055e84d6811318bda2d972c2d20c8b43b4bf578d59d",
+    "FalseControls/holonomy_reverse_no_sign_wrong.lean": "7939d71cc9af9a56cb255e86154b858f9cf1a3ca9aad4264f88dcea97481ea4a",
+    "FalseControls/non_hermitian_not_normal_wrong.lean": "bfae91ec9cbee0d572ebaae968b9768232aec91d270e3c825aa716acf234b10e",
+    "FalseControls/parallel_means_equal_wrong.lean": "4282c9713585687df183b94300a83ca86c302f3aab8553ffd6491e9a07518e86",
+    "FalseControls/scalar_unweighted_wrong.lean": "8fe0f5fd470426733e4e22d7349c206cc6f62ec1029c28d438cf947159889a34"
+  }
+}

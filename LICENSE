@@ -1,0 +1,17 @@
+Copyright (c) 2026 Jeromie Beasley
+
+SPDX-License-Identifier: MIT OR Apache-2.0
+
+The code and proofs in this repository are dual-licensed under the MIT License OR the
+Apache License, Version 2.0, at the licensee's option:
+
+  * Apache License, Version 2.0 - full text in LICENSE-APACHE
+    (https://www.apache.org/licenses/LICENSE-2.0)
+  * MIT License - full text in LICENSE-MIT
+
+A Lean file whose header reads "Released under Apache 2.0 license as described in the file
+LICENSE" may be used under the Apache License, Version 2.0, as given in LICENSE-APACHE, or
+under the MIT License, as given in LICENSE-MIT.
+
+All five Lean library files (NonNormality.lean and NonNormality/*.lean) carry this header and
+are offered under both options.

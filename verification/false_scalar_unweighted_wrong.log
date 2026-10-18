@@ -1,0 +1,14 @@
+lake env lean FalseControls/scalar_unweighted_wrong.lean
+FalseControls/scalar_unweighted_wrong.lean:8:39: error: unsolved goals
+case e_a
+ι : Type u_1
+inst✝¹ : Fintype ι
+inst✝ : DecidableEq ι
+d : ι → ℝ
+a : Matrix ι ι ℂ
+ha : aᴴ = -a
+i : ι
+x✝¹ : i ∈ Finset.univ
+j : ι
+x✝ : j ∈ Finset.univ
+⊢ -(‖a i j‖ ^ 2 * d i * d j * 2) + ‖a i j‖ ^ 2 * d i ^ 2 + ‖a i j‖ ^ 2 * d j ^ 2 = -(d i * d j * 2) + d i ^ 2 + d j ^ 2

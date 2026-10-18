@@ -1,0 +1,18 @@
+lake env lean FalseControls/holonomy_reverse_no_sign_wrong.lean
+FalseControls/holonomy_reverse_no_sign_wrong.lean:10:16: error: unsolved goals
+case cons
+ι : Type u_1
+m : Type u_2
+inst✝⁴ : Fintype ι
+inst✝³ : DecidableEq ι
+inst✝² : Fintype m
+inst✝¹ : DecidableEq m
+G : SimpleGraph ι
+inst✝ : DecidableRel G.Adj
+A : Matrix ι ι (Matrix m m ℂ)
+hA : IsUnitaryConnection G A
+u v u✝ v✝ w✝ : ι
+h : G.Adj u✝ v✝
+p : G.Walk v✝ w✝
+ih : holonomy A p.reverse = (holonomy A p)ᴴ
+⊢ -(A v✝ u✝)ᴴ * (holonomy A p)ᴴ = (A v✝ u✝)ᴴ * (holonomy A p)ᴴ
