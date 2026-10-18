@@ -1,0 +1,96 @@
+
+== L1  A = alpha*(Delta_1 (x) J) is symmetric; spectrum -/+ 2 alpha sin(2 pi k/N)
+N=6: |A-A^T|=0.0e+00  max|imag eig|=1.7e-17  spectrum err=4.4e-16
+N=7: |A-A^T|=0.0e+00  max|imag eig|=0.0e+00  spectrum err=1.3e-15
+N=12: |A-A^T|=0.0e+00  max|imag eig|=0.0e+00  spectrum err=2.2e-15
+
+== L2  [H,H^T] = eps[E-E^T,S] + eps^2[E,E^T] exactly; skew E => 2 eps [E,S] (no eps^2 term)
+eps=0.1: general err=3.1e-15; skew: err vs 2eps[K,S]=3.9e-15, ||[H,H^T]||/eps=40.053267
+eps=0.001: general err=4.0e-15; skew: err vs 2eps[K,S]=4.5e-15, ||[H,H^T]||/eps=40.053267
+normal iff [K,S]=0: K commuting with S -> True
+
+== L3  MJ+JM = tr(M) J for symmetric 2x2 M; MJ-JM symmetric; paper's matrix = JM-MJ
+MJ+JM - tr(M)J = 0.0
+paper [[2b,d-a],[d-a,-2b]] - (JM-MJ) = 0.0 ; paper - (MJ+JM) = 3.613 -> PAPER CLAIM REFUTED (723a sec.10.4)
+trace-free M (a=-d) gives MJ+JM = 0.0 (E_lead sees only the trace of the gradient)
+
+== L4  Paper's E = E_lead + E_avg: skew part only sees tr(dB); E_avg enters at O(eps)
+trace-constant anisotropic B_n: ||E_lead|| = 4.4e-16  ||E_avg|| = 0.835  ||E_avg - E_avg^T|| = 3.8e-16
+  => H symmetric, ||[H,H^T]|| = 1.2e-16: anisotropy alone produces NO non-normality (contradicts the Delta_n story)
+eps=0.01: ||[H,H^T]_full - [H,H^T]_lead-only|| = 1.112e-02, /eps = 1.1121 (constant => O(eps), not O(eps^2)) -> PAPER CLAIM REFUTED
+eps=0.001: ||[H,H^T]_full - [H,H^T]_lead-only|| = 1.112e-03, /eps = 1.1121 (constant => O(eps), not O(eps^2)) -> PAPER CLAIM REFUTED
+eps=0.0001: ||[H,H^T]_full - [H,H^T]_lead-only|| = 1.112e-04, /eps = 1.1121 (constant => O(eps), not O(eps^2)) -> PAPER CLAIM REFUTED
+
+== L5  Eigenvalues leave the real axis (claimed to stay real, 48b2/69c4 Fig. captions)
+eps=0.1: max|Im lambda| = 2.681e-01 (ratio/eps 2.681)
+eps=0.01: max|Im lambda| = 2.625e-02 (ratio/eps 2.625)
+eps=0.001: max|Im lambda| = 2.624e-03 (ratio/eps 2.624)
+paper's own E=E_lead+E_avg, eps=0.05: max|Im lambda| = 1.298e-03
+
+== L6  Pseudospectral bulge height is O(eps) (Bauer-Fike), not O(sqrt eps)
+eps=0.04: eta-pseudospectrum height = 0.10635; Bauer-Fike bound eta+eps||E||_2 = 0.23521; (h-eta)/eps = 2.634, (h-eta)/sqrt(eps) = 0.527
+eps=0.01: eta-pseudospectrum height = 0.02725; Bauer-Fike bound eta+eps||E||_2 = 0.05955; (h-eta)/eps = 2.625, (h-eta)/sqrt(eps) = 0.263
+eps=0.0025: eta-pseudospectrum height = 0.00756; Bauer-Fike bound eta+eps||E||_2 = 0.01564; (h-eta)/eps = 2.625, (h-eta)/sqrt(eps) = 0.131
+
+== L7  Kreiss constant: RHP version infinite, dist version bounded (eigvec cond.)
+eps=0.1: max Re lambda = 4.355 (>0 => sup_Re z>0 Re z||R(z)|| = inf), cond(V) = 2.055  (dist-Kreiss <= cond(V); no 1/sqrt(eps) growth)
+eps=0.01: max Re lambda = 4.359 (>0 => sup_Re z>0 Re z||R(z)|| = inf), cond(V) = 5.298  (dist-Kreiss <= cond(V); no 1/sqrt(eps) growth)
+eps=0.001: max Re lambda = 4.359 (>0 => sup_Re z>0 Re z||R(z)|| = inf), cond(V) = 1.532  (dist-Kreiss <= cond(V); no 1/sqrt(eps) growth)
+eps=0.0001: max Re lambda = 4.359 (>0 => sup_Re z>0 Re z||R(z)|| = inf), cond(V) = 1.276  (dist-Kreiss <= cond(V); no 1/sqrt(eps) growth)
+
+== L8  'Gauge invariance' B_n -> U_n B_n U_n^T with A fixed (723a sec.10.4, 81cd Prop.5)
+alpha=0, B=I, U=2I: spec [1. 1.] -> [4. 4.] -> PAPER CLAIM REFUTED (GL(2))
+site-dependent SO(2) rotations of B_n, A fixed: spectral change = 0.311 -> refuted for local U_n
+constant U in SO(2): ||U H U^T - H'|| = 5.0e-16 (exact orthogonal similarity; TRUE restricted version)
+reflection: Rf J Rf^T = -J -> True
+
+== C1  Connection-energy kernel dimensions on the 4-cycle, r=3 (v1)
+generic unitaries: dim = 3 (v1 says 3)
+holonomy diag(1,1,e^{i theta}): dim = 5 (v1 says 5)
+trivial holonomy: dim = 9 (= 9 = dim Herm(3))
+
+== C2  Non-unitary edges: normal iff D_i A_ij = A_ij D_j (v1 kernel corollary)
+commuting D0 with generic invertible P (fails D_iA=AD_j): ||[H,H*]|| = 7.331
+P commuting with D0 (D_iA=AD_j holds): ||[H,H*]|| = 1.4e-15
+
+== C3  Scalar case and Fiedler bound (Dirichlet note, v1)
+||[H,H*]||^2 = 83.35327, 8 d^T L d = 83.35327, Fiedler lower bound 8 lam2 ||d-mean||^2 = 27.51720
+constant d => normal: True
+
+== C4  Rank-one aligned channels (Dirichlet note)
+D_i A - A D_j - f(d_i-d_j) u_i u_j^* = 2.4e-16
+
+== Q1  Quantum geometric tensor Q(V,W)=Tr(Pi V W), g=Re Q, Omega=-i Tr(Pi[V,W])
+Q = g + (i/2) Omega for all 500 random Hermitian pairs: True; Q = g + i Omega would fail (figure de7dd595 / 69c4 convention) -> PAPER CONVENTION ERROR
+max(|Omega| - 2 sqrt(gVV gWW - g^2)) over 500 pairs = 0.00e+00 (<=0: inequality holds for ALL Hermitian V,W, not only tangent)
+tangent V: g(V,V) - Tr(V^2)/2 = 0.0e+00
+complementary projector: Q_{1-Pi}(V,W) - conj Q_Pi(V,W) = 0.0e+00 (g equal, Omega flips sign)
+two-band (C^2, rank 1) tangent pairs: max | |Omega| - bound | = 4.2e-15 (saturation, 81cd sec.12.6.1)
+Tr(Pi1 Pi2) - sum cos^2 theta_i = -1.1e-16 (81cd Thm 14)
+
+== Q2  Localization index LPI = (N sum ||psi_n||^4)^-1 in [1/N, 1]
+over 1000 random states: min LPI = 0.1111 >= 1/N = 0.1111; max = 0.5075 <= 1
+
+== T1  First-order cancellation & sign of second order (81cd Prop. 2, Lemma 5, Thm 8)
+det(S+eK) = det(S-eK): True
+d/de log det at 0 (central diff) = 0.0e+00
+[log det(S+eK)-log det S]/e^2 = 1.052886; predicted +1/2 sum|K_nm|^2/(l_n l_m) = 1.052886 > 0
+81cd Thm 8 predicts a NEGATIVE e^2 correction with gap^2 denominators -> PAPER CLAIM REFUTED (sign and denominators)
+Lemma 5 check: [TrR(e)-TrR(0)]/e^2 = -0.24348+0.34031j, G2 = -0.24348+0.34031j (Lemma 5 is correct)
+
+== T2  81cd Thm 3 (EP iff coalescence AND non-normal K) - counterexamples
+K=0 (normal): A_true diagonalizable? False -> EP without non-normality
+K=[[1,0,1],[0,1,0],[0,0,2]] (coalesced eigenvalue 1, ||[K,K^T]||= 2.00) : A_true diagonalizable? True -> no EP despite both conditions
+
+== T3  81cd Lemma 10 at zero gradient
+dB=0: R = 1/(m+eps) = 0.662252 < claimed lower bound 1/m = 0.666667 (+O(eps^2)) -> PAPER CLAIM REFUTED
+
+== F1  Filament Rev.4 Thm 4.1: ||exp(-Jt)|| for J=[[b,mu],[0,b]]
+max formula error = 2.2e-15
+t* = 0.74536, Mmax = 1.24243, grid max of formula = 1.24243
+kappa_r: x = 0.79681213002, kappa_r = 2.48526751266 (paper 0.79681213002, 2.48526751266)
+
+== X1  Continuum limit: second difference error <= delta^2 ||psi''''|| / 12
+delta=0.1: max err 6.729e-02, bound 6.750e-02
+delta=0.05: max err 1.686e-02, bound 1.688e-02
+delta=0.025: max err 4.218e-03, bound 4.219e-03
