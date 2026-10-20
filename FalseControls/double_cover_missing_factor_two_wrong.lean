@@ -5,9 +5,9 @@ import NonNormality
 -- Negation: `checks/Negations.lean`, `not_double_cover_missing_factor_two`.
 open Matrix NonNormality
 example {ι m : Type*} [Fintype ι] [DecidableEq ι] [Fintype m] [DecidableEq m]
-    {G : SimpleGraph ι} [DecidableRel G.Adj] {A : Matrix ι ι (Matrix m m ℂ)}
-    (hA : IsUnitaryConnection G A) (S T : ι → Matrix m m ℂ) :
+    {G : SimpleGraph ι} [DecidableRel G.Adj] (A : Matrix ι ι (Matrix m m ℂ))
+    (S T : ι → Matrix m m ℂ) :
     connectionEnergy (doubleCover G) (liftConnection A) (coverField S T) =
       connectionEnergy G A S + oppositeEnergy G A T := by
-  have h := connectionEnergy_doubleCover hA S T
+  have h := connectionEnergy_doubleCover A S T
   linarith

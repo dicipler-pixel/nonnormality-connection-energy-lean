@@ -130,7 +130,7 @@ Notation as above; `U_ij(X) = A_ij X A_ij*`, `r = dim` of the fibre (`Fintype.ca
 | R4 | `E₋,e = 2 Σ sin²θ_a`, `E₊,e = 2 Σ (1 + cos²θ_a)` in principal angles | (a) | not formalized (principal angles are not in the Lean development; R2 is the content used) | — |
 | B1 | the bipartite double cover `G̃` on `ι × Bool` and the lifted connection `Ã` (same transport on both lifted edges); `Ã` is a unitary connection on `G̃` | (a) | **proved** | `doubleCover`, `liftConnection`, `IsUnitaryConnection.liftConnection`, `doubleCover_adj_imp` |
 | B2 | one edge: `‖(S_i+T_i) − U(S_j−T_j)‖² + ‖(S_i−T_i) − U(S_j+T_j)‖² = 2‖S_i − U S_j‖² + 2‖T_i + U T_j‖²` | (a) | **proved** | `doubleCover_edge_core` |
-| B3 | **double cover**: `E₋^{G̃}(S+T, S−T) = 2E₋(S) + 2E₊(T)` | (a) | **proved** (the cover graph is modelled, not only the per-edge core) | `connectionEnergy_doubleCover`, `coverField`, `coverField_isHermitian` |
+| B3 | **double cover**: `E₋^{G̃}(S+T, S−T) = 2E₋(S) + 2E₊(T)` | (a) | **proved** (the cover graph is modelled, not only the per-edge core; holds for any block matrix `A`, unitarity is not needed) | `connectionEnergy_doubleCover`, `coverField`, `coverField_isHermitian` |
 | M1 | `E₋ E₊ = ((E₋+E₊)/2)² − ((E₋−E₊)/2)²` | (a) | **proved** (trivial identity) | `mul_eq_half_add_sq_sub_half_sub_sq` |
 | M2 | with `E₋ + E₊ = 2‖DA‖²`, `E₋ − E₊ = 2 Re Tr((DA)²)`: `E₋ E₊ = ‖DA‖⁴ − (Re Tr((DA)²))²` | (a) | **proved** (`Tr` of the flattened `(ι×m)×(ι×m)` matrix, as in O5) | `connectionEnergy_mul_oppositeEnergy` |
 | O | ring floors (`two_books_lockin.py`): `Σ_k (1 − cos x_k) ≥ min_w N(1 − cos((d − 2πw)/N))` under `Σ x_k ≡ d (mod 2π)` | (b)/(a) | **not proved** (a constrained minimisation; left out of the Lean development, numerically checked only) | — |

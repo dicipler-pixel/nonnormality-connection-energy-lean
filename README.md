@@ -139,8 +139,8 @@ theorem connectionEnergy_add_oppositeEnergy_of_projector (hA) (hP) (hP2) (hk : �
     connectionEnergy G A P + oppositeEnergy G A P = 4 * k * G.edgeFinset.card
 
 -- The bipartite double cover doubleCover G on ι × Bool, lifted connection liftConnection A,
--- field coverField S T = (S + T on the true sheet, S − T on the false sheet)
-theorem connectionEnergy_doubleCover (hA : IsUnitaryConnection G A) (S T : ι → Matrix m m ℂ) :
+-- field coverField S T = (S + T on the true sheet, S − T on the false sheet); no unitarity needed
+theorem connectionEnergy_doubleCover (A : Matrix ι ι (Matrix m m ℂ)) (S T : ι → Matrix m m ℂ) :
     connectionEnergy (doubleCover G) (liftConnection A) (coverField S T) =
       2 * connectionEnergy G A S + 2 * oppositeEnergy G A T
 

@@ -4,6 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Jeromie Beasley
 -/
 import Mathlib.Algebra.QuadraticDiscriminant
+import Mathlib.Combinatorics.SimpleGraph.DegreeSum
 import NonNormality.Opposite
 
 /-!
@@ -179,7 +180,7 @@ variable {m : Type*} [Fintype m]
 /-- A Hermitian idempotent of trace `k` has squared Frobenius norm `k`. -/
 theorem norm_sq_of_projector {P : Matrix m m ℂ} (hP : P.IsHermitian) (hP2 : P * P = P) {k : ℝ}
     (hk : trace P = k) : ‖P‖ ^ 2 = k := by
-  rw [frobenius_norm_sq_eq_re_trace, hP.eq, hP2, hk, Complex.re_to_complex, Complex.ofReal_re]
+  rw [frobenius_norm_sq_eq_re_trace, hP.eq, hP2, hk, RCLike.re_to_complex, Complex.ofReal_re]
 
 /-- **Projector fields.** For Hermitian idempotents `P`, `R` of equal trace `k`,
 `‖P − R‖² + ‖P + R‖² = 4 k`: on a projector field the opposite book is `4 k` minus the connection
@@ -204,7 +205,7 @@ theorem norm_sq_smul_one_add_of_trace_eq_zero (a : ℝ) (T : Matrix m m ℂ) (hT
       (a * a) • (1 : Matrix m m ℂ) + a • T + a • Tᴴ + Tᴴ * T := by
     rw [conjTranspose_add, conjTranspose_smul, star_trivial, conjTranspose_one]
     simp only [Matrix.add_mul, Matrix.mul_add, Matrix.smul_mul, Matrix.mul_smul, Matrix.one_mul,
-      Matrix.mul_one, smul_smul]
+      Matrix.mul_one, smul_add, smul_smul]
     abel
   rw [frobenius_norm_sq_eq_re_trace, frobenius_norm_sq_eq_re_trace, h]
   simp only [trace_add, trace_smul, trace_one, trace_conjTranspose, hT, star_zero, smul_zero,
@@ -267,7 +268,7 @@ theorem selfCommutator_add_smul_one (H : Matrix n n α) (c : ℝ) :
     (H + c • 1) * (H + c • 1)ᴴ - (H + c • 1)ᴴ * (H + c • 1) = H * Hᴴ - Hᴴ * H := by
   rw [conjTranspose_add, conjTranspose_smul, star_trivial, conjTranspose_one]
   simp only [Matrix.add_mul, Matrix.mul_add, Matrix.smul_mul, Matrix.mul_smul, Matrix.one_mul,
-    Matrix.mul_one, smul_smul]
+    Matrix.mul_one, smul_add, smul_smul]
   abel
 
 /-- **A real constant moves the opposite book by `2 c (H − Hᴴ)`.**
@@ -279,7 +280,7 @@ theorem mul_self_sub_conjTranspose_mul_self_add_smul_one (H : Matrix n n α) (c 
     rw [smul_sub, mul_smul, mul_smul, two_smul, two_smul]
   rw [h2, conjTranspose_add, conjTranspose_smul, star_trivial, conjTranspose_one]
   simp only [Matrix.add_mul, Matrix.mul_add, Matrix.smul_mul, Matrix.mul_smul, Matrix.one_mul,
-    Matrix.mul_one, smul_smul]
+    Matrix.mul_one, smul_add, smul_smul]
   abel
 
 end Constant
@@ -370,8 +371,8 @@ variable (G) in
 iff `i ~ j` and `s ≠ t`. -/
 def doubleCover : SimpleGraph (ι × Bool) where
   Adj a b := G.Adj a.1 b.1 ∧ a.2 ≠ b.2
-  symm _ _ h := ⟨h.1.symm, h.2.symm⟩
-  loopless a h := G.loopless a.1 h.1
+  symm := ⟨fun _ _ h => ⟨h.1.symm, h.2.symm⟩⟩
+  loopless := ⟨fun a h => G.irrefl h.1⟩
 
 theorem doubleCover_adj {a b : ι × Bool} :
     (doubleCover G).Adj a b ↔ G.Adj a.1 b.1 ∧ a.2 ≠ b.2 := Iff.rfl
@@ -454,9 +455,9 @@ theorem sum_sum_prod_bool [Fintype ι] {β : Type*} [AddCommMonoid β]
 
 /-- **The double cover.** The connection energy of the field `(S + T, S − T)` on the bipartite
 double cover of `G`, for the lifted connection, is `2 E₋(S) + 2 E₊(T)`: the two books are the
-even and odd halves of one connection energy on the double cover. -/
+even and odd halves of one connection energy on the double cover. No unitarity is needed. -/
 theorem connectionEnergy_doubleCover [Fintype ι] [DecidableRel G.Adj] [Fintype m] [DecidableEq m]
-    {A : Matrix ι ι (Matrix m m ℂ)} (hA : IsUnitaryConnection G A) (S T : ι → Matrix m m ℂ) :
+    (A : Matrix ι ι (Matrix m m ℂ)) (S T : ι → Matrix m m ℂ) :
     connectionEnergy (doubleCover G) (liftConnection A) (coverField S T) =
       2 * connectionEnergy G A S + 2 * oppositeEnergy G A T := by
   have key : ∀ i j, (∑ s : Bool, ∑ t : Bool, if (doubleCover G).Adj (i, s) (j, t) then

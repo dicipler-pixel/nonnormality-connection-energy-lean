@@ -74,7 +74,7 @@ section Twisted
 /-- `(-1) ^ n • M` is Hermitian when `M` is. -/
 private lemma isHermitian_neg_one_pow_smul {n : ℕ} {M : Matrix m m ℂ} (hM : M.IsHermitian) :
     ((-1 : ℂ) ^ n • M).IsHermitian :=
-  hM.smul ((IsSelfAdjoint.one.neg).pow n)
+  hM.smul ((IsSelfAdjoint.one ℂ).neg.pow n)
 
 /-- Conjugation by `c • U` with `c = ± 1` is conjugation by `U`. -/
 private lemma conj_neg_one_pow_smul [Fintype m] (n : ℕ) (U X : Matrix m m ℂ) :
@@ -300,7 +300,7 @@ variable (G A) in
 /-- **Bipartite graphs: anti-parallel sections are parallel sections after the sign flip.** If
 every edge of `G` joins `S` to its complement, the sign flip off `S` is an `ℝ`-linear
 equivalence from the Hermitian anti-parallel sections onto the Hermitian parallel sections. -/
-noncomputable def antiParallelSectionsEquivParallelSections [Fintype m]
+noncomputable def antiParallelSectionsEquivParallelSections [Fintype m] [DecidableEq m]
     (hS : ∀ i j, G.Adj i j → (i ∈ S ↔ j ∉ S)) :
     antiParallelSections G A ≃ₗ[ℝ] parallelSections G A where
   toFun D := ⟨signFlip S D.1, signFlip_isHermitian S D.2.1,

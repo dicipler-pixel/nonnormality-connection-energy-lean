@@ -89,40 +89,21 @@ theorem not_projector_budget_two_k :
 `0 — 1` with `A 0 1 = 1`, `S = 0`, `T = 1` the opposite energy of `T` is `4 ≠ 0`. -/
 theorem not_double_cover_missing_factor_two :
     ¬ ∀ {ι m : Type} [Fintype ι] [DecidableEq ι] [Fintype m] [DecidableEq m]
-      {G : SimpleGraph ι} [DecidableRel G.Adj] {A : Matrix ι ι (Matrix m m ℂ)},
-      IsUnitaryConnection G A → ∀ S T : ι → Matrix m m ℂ,
+      {G : SimpleGraph ι} [DecidableRel G.Adj] (A : Matrix ι ι (Matrix m m ℂ))
+      (S T : ι → Matrix m m ℂ),
       connectionEnergy (doubleCover G) (liftConnection A) (coverField S T) =
         connectionEnergy G A S + oppositeEnergy G A T := by
   intro h
-  have hA : IsUnitaryConnection (⊤ : SimpleGraph (Fin 2))
-      (!![0, 1; -1, 0] : Matrix (Fin 2) (Fin 2) (Matrix (Fin 1) (Fin 1) ℂ)) where
-    conjTranspose_eq_neg := by
-      refine Matrix.ext fun i j => ?_
-      fin_cases i <;> fin_cases j <;> simp [conjTranspose_apply]
-    eq_zero_of_not_adj := by
-      intro i j hij
-      rw [SimpleGraph.top_adj, not_not] at hij
-      subst hij
-      fin_cases i <;> rfl
-    mem_unitaryGroup := by
-      intro i j hij
-      rw [SimpleGraph.top_adj] at hij
-      fin_cases i <;> fin_cases j
-      · exact absurd rfl hij
-      · change (1 : Matrix (Fin 1) (Fin 1) ℂ) ∈ unitaryGroup (Fin 1) ℂ
-        exact one_mem _
-      · change (-1 : Matrix (Fin 1) (Fin 1) ℂ) ∈ unitaryGroup (Fin 1) ℂ
-        rw [mem_unitaryGroup_iff, star_neg, star_one, neg_mul_neg, one_mul]
-      · exact absurd rfl hij
-  have h1 := h hA 0 (fun _ => 1)
-  rw [connectionEnergy_doubleCover hA 0 (fun _ => 1)] at h1
+  have h1 := h (G := (⊤ : SimpleGraph (Fin 2)))
+    (!![0, 1; -1, 0] : Matrix (Fin 2) (Fin 2) (Matrix (Fin 1) (Fin 1) ℂ)) 0 (fun _ => 1)
+  rw [connectionEnergy_doubleCover] at h1
   have hS : connectionEnergy (⊤ : SimpleGraph (Fin 2)) !![0, 1; -1, 0]
       (0 : Fin 2 → Matrix (Fin 1) (Fin 1) ℂ) = 0 :=
     (connectionEnergy_eq_zero_iff _ _).2 fun i j _ => by simp
   have hT : oppositeEnergy (⊤ : SimpleGraph (Fin 2)) !![0, 1; -1, 0]
       (fun _ => (1 : Matrix (Fin 1) (Fin 1) ℂ)) ≠ 0 := by
     intro h0
-    have e := (oppositeEnergy_eq_zero_iff _ _).1 h0 0 1 (by simp)
+    have e := (oppositeEnergy_eq_zero_iff _ _).1 h0 0 1 (by decide)
     change (1 : Matrix (Fin 1) (Fin 1) ℂ) =
       -((1 : Matrix (Fin 1) (Fin 1) ℂ) * 1 * (1 : Matrix (Fin 1) (Fin 1) ℂ)ᴴ) at e
     rw [Matrix.one_mul, conjTranspose_one, Matrix.one_mul] at e
