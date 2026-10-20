@@ -312,6 +312,7 @@ theorem sum_degree_mul_norm_sq_eq_zero_of_isStarNormal_of_mul_self_eq [Decidable
   have h₃ := connectionEnergy_add_oppositeEnergy_eq_degree hA D
   linarith
 
+omit [DecidableEq m] in
 /-- **The two energies, sum.** For Hermitian blocks `D i` and skew-Hermitian `A`,
 `‖[H, Hᴴ]‖² / 8 + ‖H * H - Hᴴ * Hᴴ‖² / 8 = 2 ‖diagonal D * A‖²`. -/
 theorem norm_sq_selfCommutator_add_norm_sq_mul_self_sub_div_eight (D : ι → Matrix m m ℂ)
@@ -319,6 +320,7 @@ theorem norm_sq_selfCommutator_add_norm_sq_mul_self_sub_div_eight (D : ι → Ma
     ‖(diagonal D + A) * (diagonal D + A)ᴴ - (diagonal D + A)ᴴ * (diagonal D + A)‖ ^ 2 / 8 +
         ‖(diagonal D + A) * (diagonal D + A) - (diagonal D + A)ᴴ * (diagonal D + A)ᴴ‖ ^ 2 / 8 =
       2 * ‖diagonal D * A‖ ^ 2 := by
+  classical
   have hstar : star D = D := funext fun i => hD i
   have hc : (diagonal D * A)ᴴ = -(A * diagonal D) := by
     rw [conjTranspose_mul, hA, diagonal_conjTranspose, hstar, Matrix.neg_mul]
@@ -336,6 +338,7 @@ theorem norm_sq_selfCommutator_add_norm_sq_mul_self_sub_div_eight (D : ι → Ma
   rw [frobenius_norm_conjTranspose] at par
   linarith
 
+omit [DecidableEq m] in
 /-- **The two energies, difference.** For Hermitian blocks `D i` and skew-Hermitian `A`,
 `‖[H, Hᴴ]‖² / 8 - ‖H * H - Hᴴ * Hᴴ‖² / 8 = 2 re (trace (X * X))`, where
 `X = comp (diagonal D * A)` is `D A` as an `(ι × m) × (ι × m)` complex matrix. -/
@@ -345,6 +348,7 @@ theorem norm_sq_selfCommutator_sub_norm_sq_mul_self_sub_div_eight (D : ι → Ma
         ‖(diagonal D + A) * (diagonal D + A) - (diagonal D + A)ᴴ * (diagonal D + A)ᴴ‖ ^ 2 / 8 =
       2 * RCLike.re
         (trace (comp ι ι m m ℂ (diagonal D * A) * comp ι ι m m ℂ (diagonal D * A))) := by
+  classical
   have hstar : star D = D := funext fun i => hD i
   have hc : (diagonal D * A)ᴴ = -(A * diagonal D) := by
     rw [conjTranspose_mul, hA, diagonal_conjTranspose, hstar, Matrix.neg_mul]
