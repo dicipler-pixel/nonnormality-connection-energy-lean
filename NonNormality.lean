@@ -8,6 +8,9 @@ import NonNormality.SelfCommutator
 import NonNormality.Holonomy
 import NonNormality.Flatten
 import NonNormality.Opposite
+import NonNormality.AntiHolonomy
+import NonNormality.TwoBooks
+import NonNormality.Passive
 
 /-!
 # Non-normality is connection energy
@@ -23,4 +26,10 @@ holonomy.
 (opposite) energy `∑_{{i, j} ∈ E} ‖D i + A i j * D j * (A i j)ᴴ‖²`, the two energies add up to
 `2 ∑ i, deg i * ‖D i‖²`, and `H` normal with `H * H` Hermitian forces `D i = 0` on every vertex
 with an edge.
+
+Version 11 ("the two books"): `NonNormality.AntiHolonomy` proves the parity-twisted holonomy
+kernel (the mirror of identity (3) for the opposite energy) and the bipartite sign flip;
+`NonNormality.TwoBooks` proves the constant shift (`4 c A`), the trace split, the per-edge duality
+`P² + V² + L² = 1`, the projector budget `4 k`, the bipartite double cover and the product of the
+two books; `NonNormality.Passive` proves `E₋,e ≤ E₊,e` for positive semidefinite blocks.
 -/

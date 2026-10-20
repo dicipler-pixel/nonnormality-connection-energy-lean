@@ -1,0 +1,1 @@
+projector fields: E- = 2 sum sin^2, E+ = 2 sum (1 + cos^2), E+ + E- = 4k, V = mean cos^2: max error 1.4e-14  PASS

@@ -1,0 +1,6 @@
+Claim A (floors by direct minimisation vs formula): max mismatch 1.2e-14  PASS
+N=3: worst frustration, one book 6.0000 (formula 6.0000); with both books 1.6077 (odd-N prediction 1.6077)
+N=5: worst frustration, one book 3.8197 (formula 3.8197); with both books 0.9789 (odd-N prediction 0.9789)
+N=7: worst frustration, one book 2.7729 (formula 2.7729); with both books 0.7020 (odd-N prediction 0.7020)
+N=4: worst frustration, one book 4.6863 (formula 4.6863); with both books 4.6863 (odd-N prediction 1.2179)
+N=6: worst frustration, one book 3.2154 (formula 3.2154); with both books 3.2154 (odd-N prediction 0.8178)

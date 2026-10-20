@@ -91,7 +91,51 @@ Notation: `H = D + A` as above, `U_ij(X) = A_ij X A_ij*`,
 | O6 | `H` normal and `H²` Hermitian ⇒ `Σ_i deg(i)‖D_i‖² = 0`, i.e. `D_i = 0` at every non-isolated vertex | (a) | **proved** (both forms) | `eq_zero_of_isStarNormal_of_mul_self_eq`, `sum_degree_mul_norm_sq_eq_zero_of_isStarNormal_of_mul_self_eq` |
 | O7 | bipartite `G` (parts `S`, complement): flipping the sign of `D` off `S` swaps `E₋` and `E₊` | (a) | **proved** | `connectionEnergy_eq_oppositeEnergy_of_bipartite`, `oppositeEnergy_eq_connectionEnergy_of_bipartite` |
 | O8 | anti-parallel `D` is transported along a walk of length `n` by `(−1)ⁿ Ad(W)` | (a) | **proved** | `IsAntiParallel.eq_conj_holonomy` |
-| O9 | `ker E₊ ≅ {X ∈ Herm(r) : (−1)^{len C} W_C X W_C* = X for every loop C at i₀}` (connected `G`) | (a) | **not proved** (only the direction O8; numerically checked on cycles) | — |
-| O10 | double-cover reading: on the bipartite double cover, cover energy of `(S+T, S−T)` is `2E₋(S) + 2E₊(T)` | (a) | **not formalized** (checked numerically, `two_books_map.py` T3) | — |
-| O11 | per-edge reflection `Γ = (d_i − d_j)/(d_i + d_j)` (scalar positive field), passive fields have `E₋,e ≤ E₊,e` | (a) | **not formalized** (checked numerically, `two_books_map.py` T1, T2) | — |
+| O9 | `ker E₊ ≅ {X ∈ Herm(r) : (−1)^{len C} W_C X W_C* = X for every loop C at i₀}` (connected `G`) | (a) | **proved** (v11, see K below) | `antiParallelSectionsEquivTwistedHolonomyFixed` |
+| O10 | double-cover reading: on the bipartite double cover, cover energy of `(S+T, S−T)` is `2E₋(S) + 2E₊(T)` | (a) | **proved** (v11, see B below) | `connectionEnergy_doubleCover` |
+| O11 | per-edge reflection `Γ = (d_i − d_j)/(d_i + d_j)` (scalar positive field), passive fields have `E₋,e ≤ E₊,e` | (a) | **proved** (v11, see P below) | `scalar_edge_reflection`, `norm_sub_conj_sq_le_norm_add_conj_sq_of_posSemidef` |
 | O12 | "light" and "gravity" readings of the two energies (`g` as the neutral-signature trace form) | (c) | interpretation, not formalized | — |
+
+## v11: the two books
+
+Statements of version 11 of the paper (the one-page v7 grown into one paper carrying both books),
+keyed by the letters used in the planning of v11. Numerical checks: `numerics/anti_connection_kernel.py`,
+`two_books_map.py`, `two_books_duality.py`, `two_books_projectors.py`, `two_books_trace.py`,
+`two_books_lockin.py` (outputs beside them). Lean: `NonNormality/AntiHolonomy.lean` (K),
+`NonNormality/TwoBooks.lean` (C, P, R, B, M), `NonNormality/Passive.lean` (P, passive fields).
+Notation as above; `U_ij(X) = A_ij X A_ij*`, `r = dim` of the fibre (`Fintype.card m`).
+
+| # | Statement | Class | Status | Lean |
+|---|---|---|---|---|
+| K1 | `IsAntiParallel` Hermitian sections form an `ℝ`-subspace, the zero set of `E₊` | (a) | **proved** | `antiParallelSections`, `mem_antiParallelSections_iff_oppositeEnergy_eq_zero` |
+| K2 | the twisted fixed set `{X ∈ Herm(r) : (−1)^{len C} W_C X W_C* = X ∀ closed walks C at i₀}` is an `ℝ`-subspace | (a) | **proved** | `twistedHolonomyFixed`, `mem_twistedHolonomyFixed_iff` |
+| K3 | **twisted kernel (mirror of (3))**: connected `G`, evaluation at `i₀` is an `ℝ`-linear isomorphism `ker E₊ ≅ twisted fixed set` | (a) | **proved** | `antiParallelSectionsEquivTwistedHolonomyFixed`, `evalAntiParallel_injective`, `IsUnitaryConnection.evalAntiParallel_surjective`, `IsUnitaryConnection.twisted_conj_holonomy_eq` |
+| K4 | an odd closed walk at `i₀` whose holonomy commutes with `X` (e.g. trivial holonomy) forces `X = 0` in the twisted fixed set; an anti-parallel field then vanishes at `i₀`, and on a connected graph everywhere | (a) | **proved** | `IsUnitaryConnection.eq_zero_of_mem_twistedHolonomyFixed_of_odd`, `IsAntiParallel.eq_zero_of_odd_loop`, `IsAntiParallel.eq_zero_of_odd_loop_of_connected` |
+| K5 | bipartite `G` (every edge joins `S` to its complement): `D'` (= `D` on `S`, `−D` off `S`) is parallel iff `D` is anti-parallel; the sign flip is an `ℝ`-linear isomorphism `ker E₊ ≅ ker E₋` | (a) | **proved** | `isParallel_iff_isAntiParallel_of_bipartite`, `signFlip`, `antiParallelSectionsEquivParallelSections` |
+| C1 | `[H + cI, (H + cI)*] = [H, H*]` for real `c` (any square matrix `H` over a star algebra with real scalars) | (a) | **proved** | `selfCommutator_add_smul_one` |
+| C2 | `(H + cI)² − ((H + cI)*)² = (H² − H*²) + 2c(H − H*)`; for `H = D + A`: `= (H² − H*²) + 4cA` | (a) | **proved** | `mul_self_sub_conjTranspose_mul_self_add_smul_one`, `mul_self_sub_conjTranspose_mul_self_diagonal_add_smul_one` |
+| C3 | `‖cI + T‖² = r c² + ‖T‖²` for `Tr T = 0` (no cross term) | (a) | **proved** | `norm_sq_smul_one_add_of_trace_eq_zero` |
+| C4 | **trace split**, one edge: `D_i = c_i I + T_i`, `Tr T_i = 0`: `‖D_i ∓ U D_j‖² = r (c_i ∓ c_j)² + ‖T_i ∓ U T_j‖²` | (a) | **proved** | `norm_sub_conj_trace_split`, `norm_add_conj_trace_split` |
+| C5 | **trace split**, summed: `E∓(D) = r Σ_E (c_i ∓ c_j)² + E∓(T)` | (a) | **proved** (ordered-pair form of the scalar edge sum, divided by 2) | `connectionEnergy_trace_split`, `oppositeEnergy_trace_split` |
+| P1 | real Frobenius inner product `⟨a,b⟩ = Re Tr(a* b)`; `= Re Tr(a b)` for Hermitian `a`; symmetric; `‖a ± b‖² = ‖a‖² + ‖b‖² ± 2⟨a,b⟩` | (a) | **proved** | `frobeniusInner`, `frobeniusInner_eq_re_trace_mul`, `frobeniusInner_comm`, `norm_sq_add_eq`, `norm_sq_sub_eq` |
+| P2 | Cauchy–Schwarz `⟨a,b⟩² ≤ ‖a‖² ‖b‖²` (so `L² ≥ 0`) | (a) | **proved** (discriminant of `t ↦ ‖t a − b‖²`) | `frobeniusInner_sq_le` |
+| P3 | **per-edge duality** `P² + V² + L² = 1`, `s = ‖a‖² + ‖b‖² ≠ 0`, `P = (‖a‖² − ‖b‖²)/s`, `V = (‖a+b‖² − ‖a−b‖²)/(‖a+b‖² + ‖a−b‖²)`, `L² = 4(‖a‖²‖b‖² − ⟨a,b⟩²)/s²` | (a) | **proved** (for any `a, b`, Hermitian or not, with `⟨a,b⟩ = Re Tr(a* b)`) | `duality_sum_sq` |
+| P4 | `P² + V² ≤ 1` | (a) | **proved** | `duality_le_one` |
+| P5 | scalar edge: `(d_i − d_j)² = Γ² (d_i + d_j)²`, `Γ = (d_i − d_j)/(d_i + d_j)`, `d_i + d_j ≠ 0`; `(d_i + d_j)² − (d_i − d_j)² = 4 d_i d_j` | (a) | **proved** | `scalar_edge_reflection`, `scalar_edge_flux` |
+| P6 | **passive fields**: `a, b ⪰ 0` ⇒ `Re Tr(a b) ≥ 0` ⇒ `‖a − b‖² ≤ ‖a + b‖²`; on an edge with PSD blocks `E₋,e ≤ E₊,e` (`|Γ_e| ≤ 1`) | (a) | **proved** (via the positive square root `CFC.sqrt`) | `re_trace_mul_nonneg_of_posSemidef`, `norm_sub_sq_le_norm_add_sq_of_posSemidef`, `norm_sub_conj_sq_le_norm_add_conj_sq_of_posSemidef` |
+| P7 | `Γ = tanh(ln(d_i/d_j)/2)` | (a) | not formalized (elementary; not needed by the Lean development) | — |
+| R1 | Hermitian idempotent `P` with `Tr P = k` has `‖P‖² = k` | (a) | **proved** | `norm_sq_of_projector` |
+| R2 | **projector fields**: `‖P − R‖² + ‖P + R‖² = 4k` (so `E₊,e = 4k − E₋,e`); with transport `R = U P_j U*` | (a) | **proved** | `norm_sub_sq_add_norm_add_sq_of_projector`, `norm_sub_conj_sq_add_norm_add_conj_sq_of_projector` |
+| R3 | projector fields, summed: `E₋ + E₊ = 4k |E|` | (a) | **proved** | `connectionEnergy_add_oppositeEnergy_of_projector` |
+| R4 | `E₋,e = 2 Σ sin²θ_a`, `E₊,e = 2 Σ (1 + cos²θ_a)` in principal angles | (a) | not formalized (principal angles are not in the Lean development; R2 is the content used) | — |
+| B1 | the bipartite double cover `G̃` on `ι × Bool` and the lifted connection `Ã` (same transport on both lifted edges); `Ã` is a unitary connection on `G̃` | (a) | **proved** | `doubleCover`, `liftConnection`, `IsUnitaryConnection.liftConnection`, `doubleCover_adj_imp` |
+| B2 | one edge: `‖(S_i+T_i) − U(S_j−T_j)‖² + ‖(S_i−T_i) − U(S_j+T_j)‖² = 2‖S_i − U S_j‖² + 2‖T_i + U T_j‖²` | (a) | **proved** | `doubleCover_edge_core` |
+| B3 | **double cover**: `E₋^{G̃}(S+T, S−T) = 2E₋(S) + 2E₊(T)` | (a) | **proved** (the cover graph is modelled, not only the per-edge core) | `connectionEnergy_doubleCover`, `coverField`, `coverField_isHermitian` |
+| M1 | `E₋ E₊ = ((E₋+E₊)/2)² − ((E₋−E₊)/2)²` | (a) | **proved** (trivial identity) | `mul_eq_half_add_sq_sub_half_sub_sq` |
+| M2 | with `E₋ + E₊ = 2‖DA‖²`, `E₋ − E₊ = 2 Re Tr((DA)²)`: `E₋ E₊ = ‖DA‖⁴ − (Re Tr((DA)²))²` | (a) | **proved** (`Tr` of the flattened `(ι×m)×(ι×m)` matrix, as in O5) | `connectionEnergy_mul_oppositeEnergy` |
+| O | ring floors (`two_books_lockin.py`): `Σ_k (1 − cos x_k) ≥ min_w N(1 − cos((d − 2πw)/N))` under `Σ x_k ≡ d (mod 2π)` | (b)/(a) | **not proved** (a constrained minimisation; left out of the Lean development, numerically checked only) | — |
+
+False controls added in v11 (each with a proved negation in `checks/Negations.lean`):
+`constant_shift_two_cA_wrong` (`2cA` for `4cA`), `duality_without_third_leg_wrong` (`P² + V² = 1`),
+`projector_budget_two_k_wrong` (`2k` for `4k`), `double_cover_missing_factor_two_wrong`
+(`E₋(S) + E₊(T)` for `2E₋(S) + 2E₊(T)`).

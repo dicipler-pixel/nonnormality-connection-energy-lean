@@ -19,3 +19,11 @@
   `two_books_map.py`, `two_books_gravity.py`, with their outputs), copied unchanged. The Lean
   proofs were written on 20 October 2026 from those statements, mirroring the proofs of
   identities (1) and (2) in `SelfCommutator.lean`; no code was copied from any other project.
+* Version 11 ("the two books", 20 October 2026): `NonNormality/AntiHolonomy.lean`,
+  `NonNormality/TwoBooks.lean`, `NonNormality/Passive.lean`, the four false controls
+  `constant_shift_two_cA_wrong`, `duality_without_third_leg_wrong`, `projector_budget_two_k_wrong`,
+  `double_cover_missing_factor_two_wrong` and their negations in `checks/Negations.lean`. The
+  statements were planned with Jeromie Beasley on 20 October 2026; the numerical checks are his
+  (`numerics/two_books_duality.py`, `two_books_projectors.py`, `two_books_trace.py`,
+  `two_books_lockin.py`, with outputs), copied unchanged. The Lean proofs were written on
+  20 October 2026 from those statements; no code was copied from any other project.

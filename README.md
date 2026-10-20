@@ -6,9 +6,11 @@ Lean 4 / Mathlib formalization of
 > Zenodo record 22804072 (v7).
 
 Every mathematical statement of the paper is proved, together with the opposite
-(anticommutator) identity and its corollaries found on 20 October 2026. Everything is proved
-with no `sorry`, no warnings and only the three standard axioms (`propext`, `Classical.choice`,
-`Quot.sound`).
+(anticommutator) identity and its corollaries found on 20 October 2026, and the statements of
+version 11 of the paper ("the two books": the twisted-holonomy kernel, constants and the trace
+split, the per-edge duality, projector fields, the bipartite double cover, the product of the two
+books, passive fields). Everything is proved with no `sorry`, no warnings and only the three
+standard axioms (`propext`, `Classical.choice`, `Quot.sound`).
 
 ## Setting
 
@@ -84,8 +86,72 @@ theorem oppositeEnergy_eq_connectionEnergy_of_bipartite
 ```
 
 Anti-parallel sections are transported along a walk of length `n` by `(−1)ⁿ` times the holonomy
-(`IsAntiParallel.eq_conj_holonomy`). The converse, a twisted analogue of identity (3), is not
-proved here (see `LIMITATIONS.md`).
+(`IsAntiParallel.eq_conj_holonomy`).
+
+## Version 11: the two books
+
+`STATEMENTS.md`, section "v11: the two books", maps every statement to its Lean name. The
+headline results:
+
+```lean
+-- The twisted kernel (mirror of identity (3)): on a connected graph, anti-parallel Hermitian
+-- sections ≅ Hermitian matrices fixed by the parity-twisted holonomy of every closed walk at i₀
+noncomputable def antiParallelSectionsEquivTwistedHolonomyFixed (hA : IsUnitaryConnection G A)
+    (hG : G.Connected) (i₀ : ι) : antiParallelSections G A ≃ₗ[ℝ] twistedHolonomyFixed G A i₀
+-- twistedHolonomyFixed G A i₀ = {X | X.IsHermitian ∧ ∀ p : G.Walk i₀ i₀,
+--     (-1) ^ p.length • (holonomy A p * X * (holonomy A p)ᴴ) = X}
+-- An odd closed walk whose holonomy commutes with the field kills it (eq_zero_of_odd_loop);
+-- on a bipartite graph the sign flip exchanges parallel and anti-parallel sections
+noncomputable def antiParallelSectionsEquivParallelSections (hS : ∀ i j, G.Adj i j → (i ∈ S ↔ j ∉ S)) :
+    antiParallelSections G A ≃ₗ[ℝ] parallelSections G A
+
+-- Constants: [H + c • 1, (H + c • 1)ᴴ] = [H, Hᴴ] and, for H = diagonal D + A,
+-- (H + c • 1)² − ((H + c • 1)ᴴ)² = (H² − (Hᴴ)²) + (4 c) • A
+theorem selfCommutator_add_smul_one (H : Matrix n n α) (c : ℝ) :
+    (H + c • 1) * (H + c • 1)ᴴ - (H + c • 1)ᴴ * (H + c • 1) = H * Hᴴ - Hᴴ * H
+theorem mul_self_sub_conjTranspose_mul_self_diagonal_add_smul_one (D) (hD) (A) (hA : Aᴴ = -A) (c) :
+    (diagonal D + A + c • 1) * (diagonal D + A + c • 1) -
+        (diagonal D + A + c • 1)ᴴ * (diagonal D + A + c • 1)ᴴ =
+      ((diagonal D + A) * (diagonal D + A) - (diagonal D + A)ᴴ * (diagonal D + A)ᴴ) + (4 * c) • A
+-- Trace split: D i = c i • 1 + T i with trace (T i) = 0 (no cross term)
+theorem connectionEnergy_trace_split (hA) (c : ι → ℝ) (hT : ∀ i, trace (T i) = 0) :
+    connectionEnergy G A (fun i => c i • 1 + T i) =
+      Fintype.card m * (∑ i, ∑ j, if G.Adj i j then (c i - c j) ^ 2 else 0) / 2 +
+        connectionEnergy G A T
+-- (oppositeEnergy_trace_split: the same with + in place of −)
+
+-- Per-edge duality, with frobeniusInner a b = re (trace (aᴴ * b)): P² + V² + L² = 1
+theorem duality_sum_sq (a b : Matrix m m ℂ) (hs : ‖a‖ ^ 2 + ‖b‖ ^ 2 ≠ 0) :
+    ((‖a‖ ^ 2 - ‖b‖ ^ 2) / (‖a‖ ^ 2 + ‖b‖ ^ 2)) ^ 2 +
+      ((‖a + b‖ ^ 2 - ‖a - b‖ ^ 2) / (‖a + b‖ ^ 2 + ‖a - b‖ ^ 2)) ^ 2 +
+      4 * (‖a‖ ^ 2 * ‖b‖ ^ 2 - frobeniusInner a b ^ 2) / (‖a‖ ^ 2 + ‖b‖ ^ 2) ^ 2 = 1
+-- (frobeniusInner_sq_le: Cauchy–Schwarz, so L² ≥ 0; duality_le_one: P² + V² ≤ 1;
+--  scalar_edge_reflection, scalar_edge_flux: the scalar edge)
+-- Passive fields (NonNormality/Passive.lean): PSD blocks give E₋,e ≤ E₊,e
+theorem norm_sub_conj_sq_le_norm_add_conj_sq_of_posSemidef (hi : Di.PosSemidef) (hj : Dj.PosSemidef) (U) :
+    ‖Di - U * Dj * Uᴴ‖ ^ 2 ≤ ‖Di + U * Dj * Uᴴ‖ ^ 2
+
+-- Projector fields: Hermitian idempotents of trace k give ‖P − R‖² + ‖P + R‖² = 4 k,
+-- and summed, E₋ + E₊ = 4 k |E|
+theorem norm_sub_sq_add_norm_add_sq_of_projector (hP) (hP2 : P * P = P) (hR) (hR2) (hkP : trace P = k)
+    (hkR : trace R = k) : ‖P - R‖ ^ 2 + ‖P + R‖ ^ 2 = 4 * k
+theorem connectionEnergy_add_oppositeEnergy_of_projector (hA) (hP) (hP2) (hk : ∀ i, trace (P i) = k) :
+    connectionEnergy G A P + oppositeEnergy G A P = 4 * k * G.edgeFinset.card
+
+-- The bipartite double cover doubleCover G on ι × Bool, lifted connection liftConnection A,
+-- field coverField S T = (S + T on the true sheet, S − T on the false sheet)
+theorem connectionEnergy_doubleCover (hA : IsUnitaryConnection G A) (S T : ι → Matrix m m ℂ) :
+    connectionEnergy (doubleCover G) (liftConnection A) (coverField S T) =
+      2 * connectionEnergy G A S + 2 * oppositeEnergy G A T
+
+-- The product of the two books, X = comp (diagonal D * A)
+theorem connectionEnergy_mul_oppositeEnergy (hA) (hD) :
+    connectionEnergy G A D * oppositeEnergy G A D =
+      (‖diagonal D * A‖ ^ 2) ^ 2 - (re (trace (X * X))) ^ 2
+```
+
+Not proved (see `LIMITATIONS.md`): the ring floors of the scalar-angle model
+(`numerics/two_books_lockin.py`).
 
 ## Files
 
@@ -96,11 +162,15 @@ proved here (see `LIMITATIONS.md`).
 | `NonNormality/Holonomy.lean` | walk holonomy, transport, identity (3) |
 | `NonNormality/Flatten.lean` | `Matrix.comp` commutes with `ᴴ`, preserves the Frobenius norm; (1), (2) for the flattened matrix |
 | `NonNormality/Opposite.lean` | the opposite (anticommutator) energy: identity, anti-parallel criterion, budget, normal-and-Hermitian-square corollary, sum and difference, bipartite swap |
+| `NonNormality/AntiHolonomy.lean` | anti-parallel sections, the parity-twisted holonomy kernel (mirror of (3)), odd loops, the bipartite sign flip |
+| `NonNormality/TwoBooks.lean` | constants and the trace split, per-edge duality `P² + V² + L² = 1`, projector fields, the bipartite double cover, the product of the two books |
+| `NonNormality/Passive.lean` | positive semidefinite blocks: `E₋,e ≤ E₊,e` |
 | `checks/Necessity.lean` | proves Hermitian `D` is necessary (normal but non-parallel example) |
-| `FalseControls/` | 8 false statements that must fail to compile |
+| `checks/Negations.lean` | proves that each of the four v11 false controls is actually false (concrete counterexamples) |
+| `FalseControls/` | 12 false statements that must fail to compile |
 | `scripts/check_all.py` | runs every check, writes `verification/report.json` |
 | `.github/workflows/ci.yml` | runs `scripts/check_all.py` on GitHub Actions on every push |
-| `numerics/` | numerical checks of the paper (`check_paper.py`) and of the opposite results (`anti_connection_*.py`, `two_books_*.py`) |
+| `numerics/` | numerical checks of the paper (`check_paper.py`), of the opposite results (`anti_connection_*.py`, `two_books_map.py`, `two_books_gravity.py`) and of v11 (`two_books_duality.py`, `two_books_projectors.py`, `two_books_trace.py`, `two_books_lockin.py`) |
 | `STATEMENTS.md` | every statement of the paper, classified, with remarks |
 | `MATHLIB_FIT.md` | what could go to Mathlib, names, placement, verdict |
 
