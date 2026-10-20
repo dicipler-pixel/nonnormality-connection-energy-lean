@@ -9,5 +9,5 @@ example {ι m : Type*} [Fintype ι] [DecidableEq ι] [Fintype m] [DecidableEq m]
     (S T : ι → Matrix m m ℂ) :
     connectionEnergy (doubleCover G) (liftConnection A) (coverField S T) =
       connectionEnergy G A S + oppositeEnergy G A T := by
-  have h := connectionEnergy_doubleCover A S T
+  have h := connectionEnergy_doubleCover (G := G) A S T
   linarith
