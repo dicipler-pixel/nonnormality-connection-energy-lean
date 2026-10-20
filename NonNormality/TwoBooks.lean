@@ -372,7 +372,7 @@ iff `i ~ j` and `s ≠ t`. -/
 def doubleCover : SimpleGraph (ι × Bool) where
   Adj a b := G.Adj a.1 b.1 ∧ a.2 ≠ b.2
   symm := ⟨fun _ _ h => ⟨h.1.symm, h.2.symm⟩⟩
-  loopless := ⟨fun a h => G.irrefl h.1⟩
+  loopless := ⟨fun _ h => G.irrefl h.1⟩
 
 theorem doubleCover_adj {a b : ι × Bool} :
     (doubleCover G).Adj a b ↔ G.Adj a.1 b.1 ∧ a.2 ≠ b.2 := Iff.rfl
