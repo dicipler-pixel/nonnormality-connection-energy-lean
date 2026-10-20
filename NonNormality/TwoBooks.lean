@@ -352,8 +352,8 @@ theorem oppositeEnergy_trace_split [Fintype ι] [DecidableRel G.Adj] [Fintype m]
 
 /-- **Projector fields, summed.** If every `P i` is a Hermitian idempotent of trace `k`, then
 `E₋ + E₊ = 4 k |E|`. -/
-theorem connectionEnergy_add_oppositeEnergy_of_projector [Fintype ι] [DecidableEq ι]
-    [DecidableRel G.Adj] [Fintype m] [DecidableEq m] {A : Matrix ι ι (Matrix m m ℂ)}
+theorem connectionEnergy_add_oppositeEnergy_of_projector [Fintype ι] [DecidableRel G.Adj]
+    [Fintype m] [DecidableEq m] {A : Matrix ι ι (Matrix m m ℂ)}
     (hA : IsUnitaryConnection G A) {P : ι → Matrix m m ℂ} (hP : ∀ i, (P i).IsHermitian)
     (hP2 : ∀ i, P i * P i = P i) {k : ℝ} (hk : ∀ i, trace (P i) = k) :
     connectionEnergy G A P + oppositeEnergy G A P = 4 * k * G.edgeFinset.card := by
