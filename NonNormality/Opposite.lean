@@ -274,8 +274,9 @@ theorem connectionEnergy_add_oppositeEnergy_eq_degree [DecidableRel G.Adj]
     rw [← hdeg j]
     refine Finset.sum_congr rfl fun i _ => ?_
     by_cases h : G.Adj i j
-    · rw [if_pos h, if_pos h.symm]
-    · rw [if_neg h, if_neg fun h' => h h'.symm]
+    · simp only [h, h.symm, ↓reduceIte]
+    · have h' : ¬ G.Adj j i := fun h' => h h'.symm
+      simp only [h, h', ↓reduceIte]
   have h₁ : (∑ i, ∑ j, if G.Adj i j then ‖D i‖ ^ 2 else 0) =
       ∑ i, (G.degree i : ℝ) * ‖D i‖ ^ 2 :=
     Finset.sum_congr rfl fun i _ => hdeg i
@@ -370,14 +371,14 @@ theorem connectionEnergy_eq_oppositeEnergy_of_bipartite [DecidableRel G.Adj]
   congr 1
   refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => ?_
   by_cases hij : G.Adj i j
-  · rw [if_pos hij, if_pos hij]
+  · simp only [hij, ↓reduceIte]
     by_cases hi : i ∈ S
     · rw [h₁ i hi, h₂ j ((hS i j hij).1 hi), Matrix.mul_neg, Matrix.neg_mul, sub_neg_eq_add]
     · have hj : j ∈ S := by
         by_contra hj
         exact hi ((hS i j hij).2 hj)
       rw [h₂ i hi, h₁ j hj, sub_eq_add_neg, ← neg_add, norm_neg]
-  · rw [if_neg hij, if_neg hij]
+  · simp only [hij, ↓reduceIte]
 
 omit [DecidableEq ι] in
 /-- **Bipartite swap, the other way.** Under the hypotheses of

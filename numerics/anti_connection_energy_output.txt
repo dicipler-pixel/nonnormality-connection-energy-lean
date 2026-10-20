@@ -1,0 +1,7 @@
+(1) commutator = connection energy: max error 8.5e-14  PASS
+(2) H^2 - H*^2 = anti-connection energy: max error 8.5e-14  PASS
+(3) sum = fixed budget: max error 2.3e-13  PASS
+(4) cycle of 4: smallest anti-energy eigenvalue -8.587e-16  (zero: alternating field fits)
+(4) cycle of 5: smallest anti-energy eigenvalue 3.820e-01  (positive: odd loop frustrates)
+(4) cycle of 6: smallest anti-energy eigenvalue -7.164e-16  (zero: alternating field fits)
+(4) cycle of 7: smallest anti-energy eigenvalue 1.981e-01  (positive: odd loop frustrates)

@@ -12,3 +12,10 @@
   reused from Jeromie Beasley's own `ramanujan-challenge-lean` repository.
 * There was no earlier formalization of this paper. `NS_Nonnormal_Resolvent_Audit.lean`
   (10 Sept) is unrelated (Navier–Stokes) and was not used.
+* The opposite results (`NonNormality/Opposite.lean`: the anticommutator identity, the budget,
+  the sum and difference of the two energies, the normal-and-Hermitian-square corollary, the
+  bipartite swap) were found on 20 October 2026 in conversation with Jeromie Beasley. The
+  numerical checks are his (`numerics/anti_connection_energy.py`, `anti_connection_kernel.py`,
+  `two_books_map.py`, `two_books_gravity.py`, with their outputs), copied unchanged. The Lean
+  proofs were written on 20 October 2026 from those statements, mirroring the proofs of
+  identities (1) and (2) in `SelfCommutator.lean`; no code was copied from any other project.

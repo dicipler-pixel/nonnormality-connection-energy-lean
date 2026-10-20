@@ -1,0 +1,3 @@
+E- - E+ = 4 g(DA): max error 1.1e-13  PASS
+E- + E+ = 2 ||DA||^2: max error 1.7e-13  PASS
+sign of g(DA) over 300 random graphs: positive 149, negative 151 (the form is indefinite, as Theorem 6 says)
