@@ -27,11 +27,12 @@ open scoped Matrix.Norms.Frobenius ComplexOrder MatrixOrder
 
 namespace NonNormality
 
-variable {m : Type*} [Fintype m] [DecidableEq m]
+variable {m : Type*} [Fintype m]
 
 /-- For positive semidefinite `a`, `b`, `re (trace (a * b)) ≥ 0`. -/
 theorem re_trace_mul_nonneg_of_posSemidef {a b : Matrix m m ℂ} (ha : a.PosSemidef)
     (hb : b.PosSemidef) : 0 ≤ RCLike.re (trace (a * b)) := by
+  classical
   have hs : CFC.sqrt b * CFC.sqrt b = b :=
     CFC.sqrt_mul_sqrt_self b (Matrix.nonneg_iff_posSemidef.2 hb)
   have hH : (CFC.sqrt b).IsHermitian :=
