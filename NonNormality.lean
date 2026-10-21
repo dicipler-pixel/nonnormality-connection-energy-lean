@@ -11,6 +11,7 @@ import NonNormality.Opposite
 import NonNormality.AntiHolonomy
 import NonNormality.TwoBooks
 import NonNormality.Passive
+import NonNormality.Admissible
 
 /-!
 # Non-normality is connection energy
@@ -32,4 +33,9 @@ kernel (the mirror of identity (3) for the opposite energy) and the bipartite si
 `NonNormality.TwoBooks` proves the constant shift (`4 c A`), the trace split, the per-edge duality
 `P² + V² + L² = 1`, the projector budget `4 k`, the bipartite double cover and the product of the
 two books; `NonNormality.Passive` proves `E₋,e ≤ E₊,e` for positive semidefinite blocks.
+
+`NonNormality.Admissible` proves the admissibility defect (a sector reflection flips the trace
+form exactly, up to twice the trace form of the within-sector coupling), the half swap, the
+first- and second-order overlap identities of a curve of idempotents, the two-outcome records
+(`tanh` of half the log-odds) and Koide's `2 / 3` as a Born half and as a null vector.
 -/
