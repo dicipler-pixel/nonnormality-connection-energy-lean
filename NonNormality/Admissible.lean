@@ -91,7 +91,7 @@ theorem trace_swap_of_odd {Γ X : Matrix n n R} (hΓ : Γ * Γ = 1) (hX : Γ * X
     trace ((Γ * X) * (Γ * X)) = -trace (X * X) := by
   have h0 : Γ * (0 : Matrix n n R) * Γ = 0 := by simp
   have h := trace_swap_defect (A := X) (B := 0) hΓ hX h0
-  simp only [add_zero, zero_mul, mul_zero, Matrix.trace_zero] at h
+  simp only [add_zero, mul_zero, Matrix.trace_zero] at h
   linear_combination h
 
 end Swap
@@ -127,7 +127,7 @@ end HalfSwap
 
 section Tangent
 
-variable {n R : Type*} [Fintype n] [DecidableEq n] [CommRing R]
+variable {n R : Type*} [Fintype n] [CommRing R]
 
 /-- A tangent to the idempotents has no block inside the image of `P`. -/
 theorem mul_mul_eq_zero_of_tangent {P V : Matrix n n R} (hP : P * P = P)
