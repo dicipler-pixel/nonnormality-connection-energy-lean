@@ -40,6 +40,9 @@ how the same sign governs the Born overlap of a curve of idempotents.
 
 ## References
 
+* J. Beasley, *The Ledger Outlives the Metric*, Gravity Ledger Edition 6 (24 September 2026),
+  Theorem 8 (the overlap expansion) and Corollary 9 (a negative direction forces the overlap above
+  the cap): `trace_mul_eq_neg_of_second_order` is the second-order coefficient behind them.
 * J. Beasley, *Non-normality is connection energy* (2026), working ledger v2 (21 October 2026).
 -/
 
