@@ -12,6 +12,7 @@ import NonNormality.AntiHolonomy
 import NonNormality.TwoBooks
 import NonNormality.Passive
 import NonNormality.Admissible
+import NonNormality.Census
 
 /-!
 # Non-normality is connection energy
@@ -38,4 +39,9 @@ two books; `NonNormality.Passive` proves `E₋,e ≤ E₊,e` for positive semide
 form exactly, up to twice the trace form of the within-sector coupling), the half swap, the
 first- and second-order overlap identities of a curve of idempotents, the two-outcome records
 (`tanh` of half the log-odds) and Koide's `2 / 3` as a Born half and as a null vector.
+
+`NonNormality.Census` (version 15) proves that both books are blind to direction (transposition),
+that the Hermitian part of `D + A` is `D`, the compression defect
+`P H² P - (P H P)² = ((1 - P) H P)ᴴ ((1 - P) H P)`, that a grading makes the determinant even in
+the coupling, that `2 P - 1` is an involution, and the two books `|1 ∓ z|²` of a unit eigenvalue.
 -/
