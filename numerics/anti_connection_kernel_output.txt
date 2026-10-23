@@ -1,0 +1,25 @@
+L=3 r=1 random: kernel 0, predicted 0  ok
+L=3 r=1 random: kernel 0, predicted 0  ok
+L=3 r=2 random: kernel 0, predicted 0  ok
+L=3 r=2 sigma_z holonomy: kernel 2, predicted 2  ok
+L=3 r=3 random: kernel 0, predicted 0  ok
+L=3 r=3 random: kernel 0, predicted 0  ok
+L=4 r=1 random: kernel 1, predicted 1  ok
+L=4 r=1 random: kernel 1, predicted 1  ok
+L=4 r=2 random: kernel 2, predicted 2  ok
+L=4 r=2 sigma_z holonomy: kernel 2, predicted 2  ok
+L=4 r=3 random: kernel 3, predicted 3  ok
+L=4 r=3 random: kernel 3, predicted 3  ok
+L=5 r=1 random: kernel 0, predicted 0  ok
+L=5 r=1 random: kernel 0, predicted 0  ok
+L=5 r=2 random: kernel 0, predicted 0  ok
+L=5 r=2 sigma_z holonomy: kernel 2, predicted 2  ok
+L=5 r=3 random: kernel 0, predicted 0  ok
+L=5 r=3 random: kernel 0, predicted 0  ok
+L=6 r=1 random: kernel 1, predicted 1  ok
+L=6 r=1 random: kernel 1, predicted 1  ok
+L=6 r=2 random: kernel 2, predicted 2  ok
+L=6 r=2 sigma_z holonomy: kernel 2, predicted 2  ok
+L=6 r=3 random: kernel 3, predicted 3  ok
+L=6 r=3 random: kernel 3, predicted 3  ok
+PASS

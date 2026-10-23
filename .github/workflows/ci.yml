@@ -1,0 +1,92 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Build and verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install elan
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \
+            | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      - name: Fetch Mathlib build cache
+        run: lake exe cache get
+
+      - name: Prebuild the lint-style executable
+        run: lake build @mathlib/lint-style || lake exe lint-style --help || true
+
+      - name: Run every check (build, kernel replay, axioms, false controls, lints)
+        shell: bash
+        run: |
+          set -o pipefail
+          python3 scripts/check_all.py 2>&1 | tee check_all.out
+
+      - name: Summary
+        if: success()
+        shell: bash
+        run: |
+          python3 - <<'EOF'
+          import json
+          r = json.load(open("verification/report.json"))
+          kinds = ", ".join(f"{k}: {v}" for k, v in r["declaration_kinds"].items())
+          axioms = sorted({a for v in r["axioms"].values() for a in v})
+          print(f"::notice title=Inventory::{r['declarations_audited']} declarations ({kinds}); "
+                f"{len(r['false_controls'])} false controls rejected; axioms used: {axioms}")
+          EOF
+
+      - name: Report failures as annotations
+        if: failure()
+        shell: bash
+        run: |
+          python3 - <<'EOF'
+          import glob, re
+          def esc(s):
+              return s.replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A")
+          texts = []
+          for path in ["check_all.out"] + sorted(glob.glob("verification/*.log")):
+              try:
+                  texts.append((path, open(path).read()))
+              except OSError:
+                  pass
+          head = re.compile(r"^(?:(?:error|warning): )?(?:\./)*([\w./-]+\.lean):(\d+):(\d+): "
+                            r"(?:(error|warning): )?", re.M)
+          seen, msgs = set(), []
+          for path, text in texts:
+              ms = list(head.finditer(text))
+              for k, m in enumerate(ms):
+                  end = ms[k + 1].start() if k + 1 < len(ms) else len(text)
+                  body = text[m.end():end].strip()[:3000]
+                  key = (m.group(1), m.group(2), body[:200])
+                  if key in seen:
+                      continue
+                  seen.add(key)
+                  msgs.append((m.group(1), m.group(2), m.group(3), body, path))
+          for i, (f, l, c, body, path) in enumerate(msgs[:30]):
+              level = ["error", "warning", "notice"][i // 10]
+              print(f"::{level} file={f},line={l},col={c},title={path}::{esc(body)}")
+          out = texts[0][1] if texts and texts[0][0] == "check_all.out" else ""
+          tail = out[-6000:]
+          print(f"::notice title=check_all tail::{esc(tail)}")
+          EOF
+
+      - name: Upload verification logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: verification
+          path: |
+            verification/
+            check_all.out

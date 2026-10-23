@@ -1,0 +1,5 @@
+T1 one edge = one step (Gamma, tanh peel form, flux balance): max error 1.1e-13  PASS
+T2 passive fields: 0 violations of |Gamma_e| <= 1 in 3000 edges (largest ratio 0.9987); orthogonal supports give ratio 1.0 (mirror)  PASS
+T3 double cover: cover energy = 2 E-(S) + 2 E+(T), max error 1.1e-13  PASS
+T4 bipartite sign flip swaps the books: max error 0.0e+00  PASS
+T5 budget E- + E+ = 2 sum deg ||D_i||^2: max error 1.1e-13  PASS
