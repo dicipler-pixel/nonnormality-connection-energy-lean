@@ -2,8 +2,8 @@
 
 Lean 4 / Mathlib formalization of
 
-> Jeromie Beasley, *Non-normality is connection energy*, 17 September 2026,
-> Zenodo record 22804072 (v7).
+> Jeromie Beasley, *Non-normality is connection energy*, 30 October 2026,
+> Zenodo record 23787997 (v15), concept DOI 10.5281/zenodo.22803572.
 
 Every mathematical statement of the paper is proved, together with the opposite
 (anticommutator) identity and its corollaries found on 20 October 2026, and the statements of
@@ -165,9 +165,11 @@ Not proved (see `LIMITATIONS.md`): the ring floors of the scalar-angle model
 | `NonNormality/AntiHolonomy.lean` | anti-parallel sections, the parity-twisted holonomy kernel (mirror of (3)), odd loops, the bipartite sign flip |
 | `NonNormality/TwoBooks.lean` | constants and the trace split, per-edge duality `P² + V² + L² = 1`, projector fields, the bipartite double cover, the product of the two books |
 | `NonNormality/Passive.lean` | positive semidefinite blocks: `E₋,e ≤ E₊,e` |
+| `NonNormality/Admissible.lean` | the admissibility defect of a sector reflection, the half swap, the two overlap identities, the two-outcome record, Koide's 2/3 |
+| `NonNormality/Census.lean` | version 15: both books blind to direction, the compression defect, the determinant grading, `2P − 1` an involution, the two books of a unit eigenvalue |
 | `checks/Necessity.lean` | proves Hermitian `D` is necessary (normal but non-parallel example) |
 | `checks/Negations.lean` | proves that each of the four v11 false controls is actually false (concrete counterexamples) |
-| `FalseControls/` | 12 false statements that must fail to compile |
+| `FalseControls/` | 17 false statements that must fail to compile |
 | `scripts/check_all.py` | runs every check, writes `verification/report.json` |
 | `.github/workflows/ci.yml` | runs `scripts/check_all.py` on GitHub Actions on every push |
 | `numerics/` | numerical checks of the paper (`check_paper.py`), of the opposite results (`anti_connection_*.py`, `two_books_map.py`, `two_books_gravity.py`) and of v11 (`two_books_duality.py`, `two_books_projectors.py`, `two_books_trace.py`, `two_books_lockin.py`) |
