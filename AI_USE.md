@@ -21,7 +21,7 @@
 
 ## Author's disclosure
 
-I am Jeromie N. Beasley. This line of work goes back to June 2026, to versions 1 and 2 of
+I am Jeromie Beasley. This line of work goes back to June 2026, to versions 1 and 2 of
 *Spectral Stability Across Obstruction Interfaces in Geometric Transport Systems: Effective
 Inertia Tensors and Gluing Dynamics* on Zenodo (23 and 24 June 2026). Early on I used only Grok
 and GPT; I now also use Claude. I ask the AI questions of mathematics and physics, learn their
@@ -49,7 +49,7 @@ my direction; I did not write the proofs by hand.
 ## What is checked and what is not
 
 * Every Lean statement is checked by Lean's kernel. At commit
-  `a98c8819c8bfd358909502cdffe79f229d0db16b` the sources contain no `sorry`, `admit` or
+  `af06791fd209bdaf4890ebdd3b99e57a936c1c9e` the sources contain no `sorry`, `admit` or
   `native_decide` and declare no custom axioms; `#print axioms` shows only the standard
   `propext`, `Classical.choice` and `Quot.sound`. The false controls in `FalseControls/` must
   fail to compile.
