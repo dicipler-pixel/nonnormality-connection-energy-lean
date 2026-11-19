@@ -139,3 +139,43 @@ False controls added in v11 (each with a proved negation in `checks/Negations.le
 `constant_shift_two_cA_wrong` (`2cA` for `4cA`), `duality_without_third_leg_wrong` (`P² + V² = 1`),
 `projector_budget_two_k_wrong` (`2k` for `4k`), `double_cover_missing_factor_two_wrong`
 (`E₋(S) + E₊(T)` for `2E₋(S) + 2E₊(T)`).
+
+## Admissible switching, the overlap expansion, the two-outcome records and Koide
+
+Lean: `NonNormality/Admissible.lean` (namespace `NonNormality`). Square matrices. The trace-form
+statements are over a field of characteristic zero; the half swap is over `ℂ`; the idempotent
+tangents are over a commutative ring; the records and the Koide statements are over `ℝ`.
+
+| # | Statement | Class | Status | Lean |
+|---|---|---|---|---|
+| A1 | **Trace orthogonality.** `Γ * Γ = 1`, `Γ * A * Γ = -A`, `Γ * B * Γ = B` ⇒ `trace (A * B) = 0` | (a) | **proved** | `trace_mul_eq_zero_of_odd_of_even` |
+| A2 | **Admissibility defect.** Under the hypotheses of A1, `trace ((A + B) * (A + B)) + trace ((Γ * (A + B)) * (Γ * (A + B))) = 2 * trace (B * B)` | (a) | **proved** | `trace_swap_defect` |
+| A3 | **Exact swap.** `Γ * Γ = 1` and `Γ * X * Γ = -X` ⇒ `trace ((Γ * X) * (Γ * X)) = -trace (X * X)` | (a) | **proved** | `trace_swap_of_odd` |
+| A4 | **Cross-sector adjoint.** `Γᴴ = Γ`, `Γ * Γ = 1`, `Γ * X * Γ = -X` ⇒ `Xᴴ * Γ = -(Γ * Xᴴ)` | (a) | **proved** | `conjTranspose_mul_of_odd` |
+| A5 | **Half swap.** Under the hypotheses of A4, `Γ * X + (Γ * X)ᴴ = Γ * (X - Xᴴ)` | (a) | **proved** | `add_conjTranspose_mul_of_odd` |
+| A6 | **Half swap, other half.** Under the hypotheses of A4, `Γ * X - (Γ * X)ᴴ = Γ * (X + Xᴴ)` | (a) | **proved** | `sub_conjTranspose_mul_of_odd` |
+| A7 | **Tangent has no internal block.** `P * P = P` and `P * V + V * P = V` ⇒ `P * V * P = 0` | (a) | **proved** | `mul_mul_eq_zero_of_tangent` |
+| A8 | **First-order overlap.** Under the hypotheses of A7, `trace (P * V) = 0` | (a) | **proved** | `trace_mul_eq_zero_of_tangent` |
+| A9 | **Second-order overlap.** `P * P = P`, `P * V + V * P = V` and `V * V + V * V + P * W + W * P = W` ⇒ `trace (P * W) = -trace (V * V)` | (a) | **proved** | `trace_mul_eq_neg_of_second_order` |
+| A10 | **Log record.** `0 < s < 1` ⇒ `Real.tanh (Real.log (s / (1 - s)) / 2) = 2 * s - 1` | (a) | **proved** | `tanh_half_log_odds` |
+| A11 | **Even record.** For every real `s`, `4 * s * (1 - s) = 1 - (2 * s - 1) ^ 2` | (a) | **proved** | `four_mul_mul_one_sub` |
+| A12 | **Complement fixed point.** `(∀ s, F s + F (1 - s) = 1)` ⇒ `F (1 / 2) = 1 / 2` | (a) | **proved** | `apply_half_of_complement` |
+| A13 | **Koide as a Born half.** `x + y + z ≠ 0` and `x ^ 2 + y ^ 2 + z ^ 2 ≠ 0` ⇒ `(x ^ 2 + y ^ 2 + z ^ 2) / (x + y + z) ^ 2 = 2 / 3 ⇔ (x + y + z) ^ 2 / (3 * (x ^ 2 + y ^ 2 + z ^ 2)) = 1 / 2` | (a) | **proved** | `koide_iff_born_half` |
+| A14 | **Koide as a null vector.** `x + y + z ≠ 0` ⇒ `(x ^ 2 + y ^ 2 + z ^ 2) / (x + y + z) ^ 2 = 2 / 3 ⇔ (x + y + z) ^ 2 / 3 - ((x ^ 2 + y ^ 2 + z ^ 2) - (x + y + z) ^ 2 / 3) = 0` | (a) | **proved** | `koide_iff_null` |
+
+## Version 15: direction, compression, gradings and unit eigenvalues
+
+Lean: `NonNormality/Census.lean` (namespace `NonNormality`). Square matrices; the transpose,
+Hermitian-part and compression statements are over `ℂ`, the determinant over a commutative ring,
+the reflection over a ring, and the unit-eigenvalue books are identities of `Complex.normSq`.
+
+| # | Statement | Class | Status | Lean |
+|---|---|---|---|---|
+| V1 | **Books cannot see direction.** For every `H`, `Hᵀ * (Hᵀ)ᴴ - (Hᵀ)ᴴ * Hᵀ = -(H * Hᴴ - Hᴴ * H)ᵀ` | (a) | **proved** | `transpose_selfCommutator` |
+| V2 | **Opposite book, transposed.** For every `H`, `Hᵀ * Hᵀ - (Hᵀ)ᴴ * (Hᵀ)ᴴ = (H * H - Hᴴ * Hᴴ)ᵀ` | (a) | **proved** | `transpose_opposite` |
+| V3 | **Hermitian part ignores the transport.** `Dᴴ = D` and `Aᴴ = -A` ⇒ `(D + A) + (D + A)ᴴ = D + D` | (a) | **proved** | `add_conjTranspose_of_skew` |
+| V4 | **Compression defect.** `Pᴴ = P`, `P * P = P` and `Hᴴ = H` ⇒ `P * H * H * P - (P * H * P) * (P * H * P) = ((1 - P) * H * P)ᴴ * ((1 - P) * H * P)` | (a) | **proved** | `compression_defect` |
+| V5 | **Grading makes the determinant even.** `S * S = 1`, `S * D * S = D` and `S * A * S = -A` ⇒ `det (D + A) = det (D - A)` | (a) | **proved** | `det_add_eq_det_sub_of_grading` |
+| V6 | **Reflection of an idempotent.** `P * P = P` ⇒ `(P + P - 1) * (P + P - 1) = 1` | (a) | **proved** | `reflection_of_idempotent` |
+| V7 | **Unit eigenvalue, sum of the books.** For every `z : ℂ`, `Complex.normSq (1 - z) + Complex.normSq (1 + z) = 2 + 2 * Complex.normSq z` | (a) | **proved** | `normSq_one_sub_add_normSq_one_add` |
+| V8 | **Unit eigenvalue, difference of the books.** For every `z : ℂ`, `Complex.normSq (1 + z) - Complex.normSq (1 - z) = 4 * z.re` | (a) | **proved** | `normSq_one_add_sub_normSq_one_sub` |
