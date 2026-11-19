@@ -72,6 +72,57 @@ Lean). Points worth tightening:
   the Lean file fixes them (`holonomy`, `holonomy_reverse`: reversing a walk of length `n` gives
   `(−1)^n W*`) and shows the sign is invisible to `Ad`.
 
+## Lemmas used above
+
+Lean: `NonNormality/Frobenius.lean`, `NonNormality/SelfCommutator.lean`,
+`NonNormality/Holonomy.lean`, `NonNormality/Flatten.lean`, `NonNormality/Opposite.lean`,
+`NonNormality/AntiHolonomy.lean`, `NonNormality/TwoBooks.lean`. Each row is the declaration's
+conclusion, with the hypotheses written on that declaration. No extra hypothesis is assumed.
+
+| # | Statement | Class | Status | Lean |
+|---|---|---|---|---|
+| L1 | For `A : Matrix m n α` with `m`, `n` finite and `[SeminormedAddCommGroup α]`: `‖A‖ ^ 2 = ∑ i, ∑ j, ‖A i j‖ ^ 2` | (a) | **proved** | `frobenius_norm_sq` |
+| L2 | For `A : Matrix m n 𝕜` with `[RCLike 𝕜]` and finite `m`, `n`: `‖A‖ ^ 2 = RCLike.re (trace (Aᴴ * A))` | (a) | **proved** | `frobenius_norm_sq_eq_re_trace` |
+| L3 | `[DecidableRel G.Adj]`: `connectionEnergy G A D = 0 ↔ IsParallel G A D` | (a) | **proved** | `connectionEnergy_eq_zero_iff` |
+| L4 | `[DecidableRel G.Adj]`: `0 ≤ connectionEnergy G A D` | (a) | **proved** | `connectionEnergy_nonneg` |
+| L5 | `IsUnitaryConnection G A` and `∀ i, (D i).IsHermitian`: `‖D j * A j i - A j i * D i‖ = ‖D i * A i j - A i j * D j‖` | (a) | **proved** | `IsUnitaryConnection.norm_mul_sub_mul_comm` |
+| L6 | `[DecidableRel G.Adj]`, `[AddCommMonoid M]`, and `∀ i j, f i j = f j i`: `(∑ i, ∑ j, if G.Adj i j then f i j else 0) = 2 • ∑ e ∈ G.edgeFinset, Sym2.lift ⟨f, hf⟩ e` | (a) | **proved** | `sum_sum_ite_adj_eq_two_mul_sum_edgeFinset` |
+| L7 | `holonomy A (Walk.nil : G.Walk u u) = 1` | (a) | **proved** | `holonomy_nil` |
+| L8 | `h : G.Adj u v` and `p : G.Walk v w`: `holonomy A (Walk.cons h p) = holonomy A p * A v u` | (a) | **proved** | `holonomy_cons` |
+| L9 | `p : G.Walk u v` and `q : G.Walk v w`: `holonomy A (p.append q) = holonomy A q * holonomy A p` | (a) | **proved** | `holonomy_append` |
+| L10 | `p : G.Walk u v` and `h : G.Adj v w`: `holonomy A (p.concat h) = A w v * holonomy A p` | (a) | **proved** | `holonomy_concat` |
+| L11 | `IsUnitaryConnection G A` and `p : G.Walk u v`: `holonomy A p ∈ unitaryGroup m ℂ` | (a) | **proved** | `IsUnitaryConnection.holonomy_mem_unitaryGroup` |
+| L12 | `U ∈ unitaryGroup m ℂ`: `U * X * Uᴴ = X ↔ Commute U X` | (a) | **proved** | `conj_eq_self_iff_commute` |
+| L13 | `IsUnitaryConnection G A`: `X ∈ holonomyFixed G A i₀ ↔ X.IsHermitian ∧ ∀ p : G.Walk i₀ i₀, Commute X (holonomy A p)` | (a) | **proved** | `IsUnitaryConnection.mem_holonomyFixed_iff_commute` |
+| L14 | `(evalParallel G A i₀ D : Matrix m m ℂ) = (D : ι → Matrix m m ℂ) i₀` | (a) | **proved** | `evalParallel_apply_coe` |
+| L15 | `G.Connected`: `Function.Injective (evalParallel G A i₀)` | (a) | **proved** | `evalParallel_injective` |
+| L16 | `IsUnitaryConnection G A` and `G.Connected`: `Function.Surjective (evalParallel G A i₀)` | (a) | **proved** | `IsUnitaryConnection.evalParallel_surjective` |
+| L17 | `IsUnitaryConnection G A` and `G.Connected`: `(parallelSectionsEquivHolonomyFixed hA hG i₀ D : Matrix m m ℂ) = (D : ι → Matrix m m ℂ) i₀` | (a) | **proved** | `parallelSectionsEquivHolonomyFixed_apply_coe` |
+| L18 | `[Star α]`: `comp J I K K α Mᴴ = (comp I J K K α M)ᴴ` | (a) | **proved** | `comp_conjTranspose` |
+| L19 | Finite index types and `[NormedAddCommGroup α]`: `‖comp I J K L α M‖ = ‖M‖` | (a) | **proved** | `frobenius_norm_comp` |
+| L20 | `comp ι ι m m ℂ H * (comp ι ι m m ℂ H)ᴴ - (comp ι ι m m ℂ H)ᴴ * comp ι ι m m ℂ H = comp ι ι m m ℂ (H * Hᴴ - Hᴴ * H)` | (a) | **proved** | `comp_selfCommutator` |
+| L21 | For finite `p`, `q` and `X Y : Matrix p q ℂ`: `‖X - Y‖ ^ 2 + ‖X + Y‖ ^ 2 = 2 * (‖X‖ ^ 2 + ‖Y‖ ^ 2)` | (a) | **proved** | `frobenius_parallelogram` |
+| L22 | `comp I I K K ℂ (X + Xᴴ) = comp I I K K ℂ X + (comp I I K K ℂ X)ᴴ` | (a) | **proved** | `comp_add_conjTranspose` |
+| L23 | `comp I I K K ℂ (X - Xᴴ) = comp I I K K ℂ X - (comp I I K K ℂ X)ᴴ` | (a) | **proved** | `comp_sub_conjTranspose` |
+| L24 | `X = Y` and `X = -Y`: `X = 0` | (a) | **proved** | `eq_zero_of_eq_of_eq_neg` |
+| L25 | `U ∈ unitaryGroup m ℂ`: `‖U * Y * Uᴴ‖ = ‖Y‖` | (a) | **proved** | `norm_conj_of_mem_unitaryGroup` |
+| L26 | `[DecidableRel G.Adj]`: `0 ≤ oppositeEnergy G A D` | (a) | **proved** | `oppositeEnergy_nonneg` |
+| L27 | `[Fintype m] [DecidableEq m]`: `(evalAntiParallel G A i₀ D : Matrix m m ℂ) = (D : ι → Matrix m m ℂ) i₀` | (a) | **proved** | `evalAntiParallel_apply_coe` |
+| L28 | `IsUnitaryConnection G A` and `G.Connected`: `(antiParallelSectionsEquivTwistedHolonomyFixed hA hG i₀ D : Matrix m m ℂ) = (D : ι → Matrix m m ℂ) i₀` | (a) | **proved** | `antiParallelSectionsEquivTwistedHolonomyFixed_apply_coe` |
+| L29 | `i ∈ S`: `signFlip S D i = D i` | (a) | **proved** | `signFlip_apply_of_mem` |
+| L30 | `i ∉ S`: `signFlip S D i = -D i` | (a) | **proved** | `signFlip_apply_of_notMem` |
+| L31 | `signFlip S (signFlip S D) = D` | (a) | **proved** | `signFlip_signFlip` |
+| L32 | `signFlip S (D + E) = signFlip S D + signFlip S E` | (a) | **proved** | `signFlip_add` |
+| L33 | `signFlip S (c • D) = c • signFlip S D` | (a) | **proved** | `signFlip_smul` |
+| L34 | `∀ i, (D i).IsHermitian`: `(signFlip S D i).IsHermitian` | (a) | **proved** | `signFlip_isHermitian` |
+| L35 | `frobeniusInner a a = ‖a‖ ^ 2` | (a) | **proved** | `frobeniusInner_self` |
+| L36 | `frobeniusInner (t • a) b = t * frobeniusInner a b` | (a) | **proved** | `frobeniusInner_smul_left` |
+| L37 | `‖t • a‖ ^ 2 = t ^ 2 * ‖a‖ ^ 2` | (a) | **proved** | `norm_sq_smul_real` |
+| L38 | `liftConnection A a b = if a.2 ≠ b.2 then A a.1 b.1 else 0` | (a) | **proved** | `liftConnection_apply` |
+| L39 | `coverField S T (i, true) = S i + T i` | (a) | **proved** | `coverField_true` |
+| L40 | `coverField S T (i, false) = S i - T i` | (a) | **proved** | `coverField_false` |
+| L41 | `[Fintype ι]` and `[AddCommMonoid β]`: `∑ a, ∑ b, f a b = ∑ i, ∑ j, ∑ s : Bool, ∑ t : Bool, f (i, s) (j, t)` | (a) | **proved** | `sum_sum_prod_bool` |
+
 ## Opposite results (found 20 October 2026, not in the v7 paper)
 
 Found in conversation with Jeromie Beasley on 20 October 2026; checked numerically to `1e-13`
