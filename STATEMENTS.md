@@ -32,10 +32,10 @@ Numerical checks: `numerics/check_paper.py` (output in `numerics/check_paper_out
 | C3 | `[D,A]_ij = D_iA_ij − A_ijD_j = (D_i − A_ijD_jA_ij*)A_ij` | | (a) | **proved** | `diagonal_mul_sub_mul_diagonal_apply`, `norm_mul_sub_mul_eq_of_mem_unitaryGroup` |
 | C4 | unitary invariance of `‖·‖_F` | | (a) | **proved** (not in Mathlib) | `frobenius_norm_unitary_mul`, `frobenius_norm_mul_unitary` |
 | C5 | **(1)** `⅛‖[H,H*]‖_F² = Σ_{{i,j}∈E} ‖D_i − A_ijD_jA_ij*‖_F²` | | (a) | **proved** (ordered-pair form, edge form, flattened form) | `norm_sq_selfCommutator_div_eight`, `norm_sq_selfCommutator_div_eight_eq_sum_edgeFinset`, `norm_sq_selfCommutator_comp_div_eight` |
-| C5' | summand independent of edge orientation ("two orientations") | | (a) | **proved** | `IsUnitaryConnection.norm_sub_conj_comm`, `norm_mul_sub_mul_comm` |
+| C5' | summand independent of edge orientation ("two orientations") | | (a) | **proved** | `IsUnitaryConnection.norm_sub_conj_comm`, `IsUnitaryConnection.norm_mul_sub_mul_comm` |
 | C6 | **(2)** `H` normal ⇔ `D_i = A_ijD_jA_ij*` on every edge | | (a) | **proved** | `isStarNormal_iff_isParallel`, `isStarNormal_comp_iff_isParallel` |
 | C7 | "i.e. exactly when `D` is parallel for the induced connection" | definitional | (a)/(c) | definition | `IsParallel` |
-| C8 | (connected `G`) (2) transports `D_{i₀}` along every path; path independence ⇔ `[D_{i₀}, W_C] = 0` for all loops | | (a) | **proved** | `IsParallel.eq_conj_holonomy`, `IsUnitaryConnection.conj_holonomy_eq`, `mem_holonomyFixed_iff_commute` |
+| C8 | (connected `G`) (2) transports `D_{i₀}` along every path; path independence ⇔ `[D_{i₀}, W_C] = 0` for all loops | | (a) | **proved** | `IsParallel.eq_conj_holonomy`, `IsUnitaryConnection.conj_holonomy_eq`, `IsUnitaryConnection.mem_holonomyFixed_iff_commute` |
 | C9 | **(3)** `ker E_A ≅ Fix_{Herm(r)} Hol_{Ad A}(i₀)` | real-linear iso by evaluation at `i₀` | (a) | **proved** (as an `ℝ`-linear equivalence) | `parallelSectionsEquivHolonomyFixed`, `mem_parallelSections_iff_connectionEnergy_eq_zero` |
 | C10 | scalar specialization is the weighted Dirichlet identity | | (a) | **proved in the general (non-unitary) form** — see remark R2 | `norm_sq_selfCommutator_scalar` |
 | C11 | "U is a connection on End(E) in the ordinary sense"; "classical correspondence between parallel sections and holonomy-fixed endomorphisms"; "energy measures the failure of its Hermitian obstruction field to be parallel" | interpretation in differential-geometric language | (c) | not formalized as such; its discrete content is C8–C9 | — |
@@ -122,6 +122,11 @@ conclusion, with the hypotheses written on that declaration. No extra hypothesis
 | L39 | `coverField S T (i, true) = S i + T i` | (a) | **proved** | `coverField_true` |
 | L40 | `coverField S T (i, false) = S i - T i` | (a) | **proved** | `coverField_false` |
 | L41 | `[Fintype ι]` and `[AddCommMonoid β]`: `∑ a, ∑ b, f a b = ∑ i, ∑ j, ∑ s : Bool, ∑ t : Bool, f (i, s) (j, t)` | (a) | **proved** | `sum_sum_prod_bool` |
+| L42 | `IsStarNormal (comp ι ι m m ℂ H) ↔ IsStarNormal H` | (a) | **proved** | `isStarNormal_comp_iff` |
+| L43 | `D ∈ parallelSections G A ↔ (∀ i, (D i).IsHermitian) ∧ IsParallel G A D` | (a) | **proved** | `mem_parallelSections_iff` |
+| L44 | `X ∈ holonomyFixed G A i₀ ↔ X.IsHermitian ∧ ∀ p : G.Walk i₀ i₀, holonomy A p * X * (holonomy A p)ᴴ = X` | (a) | **proved** | `mem_holonomyFixed_iff` |
+| L45 | `[Fintype m]`: `D ∈ antiParallelSections G A ↔ (∀ i, (D i).IsHermitian) ∧ IsAntiParallel G A D` | (a) | **proved** | `mem_antiParallelSections_iff` |
+| L46 | For `a b : ι × Bool`: `(doubleCover G).Adj a b ↔ G.Adj a.1 b.1 ∧ a.2 ≠ b.2` | (a) | **proved** | `doubleCover_adj` |
 
 ## Opposite results (found 20 October 2026, not in the v7 paper)
 
