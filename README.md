@@ -167,7 +167,7 @@ Not proved (see `LIMITATIONS.md`): the ring floors of the scalar-angle model
 | `NonNormality/Passive.lean` | positive semidefinite blocks: `E₋,e ≤ E₊,e` |
 | `checks/Necessity.lean` | proves Hermitian `D` is necessary (normal but non-parallel example) |
 | `checks/Negations.lean` | proves that each of the four v11 false controls is actually false (concrete counterexamples) |
-| `FalseControls/` | 12 false statements that must fail to compile |
+| `FalseControls/` | 17 false statements that must fail to compile |
 | `scripts/check_all.py` | runs every check, writes `verification/report.json` |
 | `.github/workflows/ci.yml` | runs `scripts/check_all.py` on GitHub Actions on every push |
 | `numerics/` | numerical checks of the paper (`check_paper.py`), of the opposite results (`anti_connection_*.py`, `two_books_map.py`, `two_books_gravity.py`) and of v11 (`two_books_duality.py`, `two_books_projectors.py`, `two_books_trace.py`, `two_books_lockin.py`) |
