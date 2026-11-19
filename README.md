@@ -165,6 +165,8 @@ Not proved (see `LIMITATIONS.md`): the ring floors of the scalar-angle model
 | `NonNormality/AntiHolonomy.lean` | anti-parallel sections, the parity-twisted holonomy kernel (mirror of (3)), odd loops, the bipartite sign flip |
 | `NonNormality/TwoBooks.lean` | constants and the trace split, per-edge duality `P² + V² + L² = 1`, projector fields, the bipartite double cover, the product of the two books |
 | `NonNormality/Passive.lean` | positive semidefinite blocks: `E₋,e ≤ E₊,e` |
+| `NonNormality/Admissible.lean` | admissibility defect, the half swap, overlap of a curve of idempotents, two-outcome records, Koide as a Born half and as a null vector |
+| `NonNormality/Census.lean` | both books ignore transposition, the Hermitian part of `D + A` is `D`, compression defect, a grading makes the determinant even, `P + P - 1` is an involution, the two books of a unit eigenvalue |
 | `checks/Necessity.lean` | proves Hermitian `D` is necessary (normal but non-parallel example) |
 | `checks/Negations.lean` | proves that each of the four v11 false controls is actually false (concrete counterexamples) |
 | `FalseControls/` | 17 false statements that must fail to compile |
